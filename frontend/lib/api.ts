@@ -142,10 +142,10 @@ async function postJson<T>(endpoint: string, data: any): Promise<T> {
     return res.json();
 }
 
-export const fetchSignals = () => fetchJson<SignalResponse>("/api/kr/signals");
-export const fetchMarketStatus = () => fetchJson<MarketStatus>("/api/kr/market-status");
-export const fetchAIAnalysis = () => fetchJson<AIAnalysis>("/api/kr/ai-analysis");
-export const fetchMacroIndicators = () => fetchJson<MacroIndicators>("/api/kr/macro-indicators");
-export const fetchSectorPerformance = () => fetchJson<SectorPerformance>("/api/kr/sector-performance");
-export const fetchStockHistory = (ticker: string) => fetchJson<StockHistory[]>(`/api/kr/history/${ticker}?period=1y`);
-export const fetchStockAnalysis = (ticker: string) => postJson<Signal>("/api/kr/analyze-stock", { ticker });
+export const fetchSignals = () => fetchJson<SignalResponse>(`${API_BASE}/signals`);
+export const fetchMarketStatus = () => fetchJson<MarketStatus>(`${API_BASE}/market-status`);
+export const fetchAIAnalysis = () => fetchJson<AIAnalysis>(`${API_BASE}/ai-analysis`);
+export const fetchMacroIndicators = () => fetchJson<MacroIndicators>(`${API_BASE}/macro-indicators`);
+export const fetchSectorPerformance = () => fetchJson<SectorPerformance>(`${API_BASE}/sector-performance`);
+export const fetchStockHistory = (ticker: string) => fetchJson<StockHistory[]>(`${API_BASE}/history/${ticker}?period=1y`);
+export const fetchStockAnalysis = (ticker: string) => postJson<Signal>(`${API_BASE}/analyze-stock`, { ticker });
