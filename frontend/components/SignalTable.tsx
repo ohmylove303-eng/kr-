@@ -37,8 +37,15 @@ export function SignalTable({ signals, onRowClick }: SignalTableProps) {
             return <Text size="xs" c={color} fw={700}>{sign}{formatted}</Text>;
         };
 
-        // 3. NICE Score Color
-        const niceScore = sig.nice_layers?.L1_technical || (sig.score ? sig.score * 1.2 : 0);
+        // 3. NICE Score Color (Aligned with Modal: Total Score / 300 * 100)
+        let niceScore = 0;
+        if (sig.nice_layers?.total) {
+            niceScore = (sig.nice_layers.total / 300) * 100;
+        } else if (sig.score) {
+            // Fallback: if score is large (>100), assume it's raw total out of 300
+            niceScore = sig.score > 100 ? (sig.score / 300) * 100 : sig.score;
+        }
+
         const progressColor = niceScore >= 80 ? "teal" : niceScore >= 50 ? "yellow" : "gray";
 
         return (
@@ -76,11 +83,11 @@ export function SignalTable({ signals, onRowClick }: SignalTableProps) {
                     </Stack>
                 </Table.Td>
 
-                {/* NICE Tech Score */}
+                {/* NICE Total Score */}
                 <Table.Td>
                     <Stack gap={2} w={80}>
                         <Group justify="space-between">
-                            <Text size="xs" c="dimmed" style={{ fontSize: '9px' }}>Tech Score</Text>
+                            <Text size="xs" c="dimmed" style={{ fontSize: '9px' }}>Total Score</Text>
                             <Text size="xs" fw={700} c={progressColor}>{Math.round(niceScore)}</Text>
                         </Group>
                         <Progress value={niceScore} size="sm" color={progressColor} />
