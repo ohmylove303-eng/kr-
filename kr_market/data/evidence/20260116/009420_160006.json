@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-01-16T16:00:06.893036",
+  "ticker": "009420",
+  "final_score": 84,
+  "gates": {
+    "L1_Liquidity": {
+      "passed": true,
+      "score": 100,
+      "reason": "Turnover: 318.4억 (Min 100.0억)",
+      "details": {
+        "turnover": 31835570000.0
+      }
+    },
+    "L2_VCP": {
+      "passed": true,
+      "score": 63,
+      "reason": "Contraction: 0.74",
+      "details": {
+        "ticker": "009420",
+        "current_price": 52000.0,
+        "entry_price": 52000.0,
+        "score": 76,
+        "contraction_ratio": 0.74,
+        "foreign_5d": 1254743880,
+        "inst_5d": 1672991840,
+        "signal_date": "2026-01-16"
+      }
+    },
+    "L3_Flow": {
+      "passed": true,
+      "score": 100,
+      "reason": "Net Flow: 2927735720",
+      "details": {
+        "foreign": 1254743880,
+        "inst": 1672991840
+      }
+    },
+    "L4_Quality": {
+      "passed": true,
+      "score": 80,
+      "reason": "Market Cap Pass",
+      "details": {
+        "cap": 1000.0
+      }
+    }
+  },
+  "execution_plan": {
+    "ticker": "009420",
+    "action": "BUY",
+    "entry_price": 52000,
+    "stop_loss": 48350,
+    "tp1": 59800,
+    "tp2": 67600,
+    "quantity": 19,
+    "time_stop_date": "2026-01-31",
+    "risk_reward_ratio": 2.14
+  },
+  "metadata": {
+    "engine": "KR-NICE-vPerfect",
+    "gate_weights": "standard"
+  }
+}

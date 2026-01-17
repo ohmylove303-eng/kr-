@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantix - KR Market AI Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #000000 0%, #0f172a 100%);
+            min-height: 100vh;
+            color: #f5f5f7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-card {
+            background: rgba(28, 28, 30, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+        }
+
+        .hero-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 px-6 py-4" style="background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(10px);">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-chart-line text-3xl text-purple-500"></i>
+                <span class="text-2xl font-black tracking-tight">Quantix</span>
+            </div>
+            <a href="/app"
+                class="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-sm font-bold border border-white/20">
+                Dashboard →
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="max-w-6xl mx-auto text-center">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-sm text-purple-400 font-medium mb-8">
+                <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                AI-Powered Korean Stock Analysis
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 leading-tight">
+                Smart Money Meets<br />
+                <span class="gradient-text">Artificial Intelligence</span>
+            </h1>
+
+            <p class="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+                VCP 패턴 감지, 기관/외국인 수급 추적, GPT-5 & Gemini AI 분석으로<br />
+                한국 주식시장의 알파를 찾아드립니다.
+            </p>
+
+            <div class="flex gap-4 justify-center mb-20">
+                <a href="/app"
+                    class="hero-btn px-8 py-4 rounded-full text-white font-bold text-lg flex items-center gap-2">
+                    <i class="fas fa-rocket"></i>
+                    시작하기
+                </a>
+                <a href="#features"
+                    class="px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white font-bold text-lg border border-white/20">
+                    자세히 보기
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="glass-card p-6">
+                    <div class="text-4xl font-black text-white mb-2">66.7%</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Backtest Win Rate</div>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="text-4xl font-black text-white mb-2">3.38x</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">Profit Factor</div>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="text-4xl font-black text-white mb-2">Real-time</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider">AI Analysis</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">
+                    Why <span class="gradient-text">Quantix</span>?
+                </h2>
+                <p class="text-xl text-gray-400">최첨단 AI 기술로 시장을 분석합니다</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-card p-8">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">VCP Pattern Detection</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Mark Minervini의 VCP(Volatility Contraction Pattern) 자동 감지.
+                        변동성 축소 패턴을 실시간으로 스캔합니다.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-card p-8">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Smart Money Tracking</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        외국인과 기관의 수급 흐름을 5일, 10일 단위로 추적.
+                        Smart Money가 모이는 종목을 먼저 발견합니다.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-card p-8">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Dual AI Analysis</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        GPT-5와 Gemini 3.0이 동시 분석.
+                        Google Search Grounding으로 최신 뉴스까지 반영합니다.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="glass-card p-8">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-traffic-light text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Market Gate System</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        시장 상황을 0-100 점수로 평가.
+                        KOSPI, KOSDAQ 상태에 따라 진입/관망 신호를 제공합니다.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="glass-card p-8">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-area text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Interactive Charts</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        LightweightCharts 기반의 프로급 차트.
+                        VCP 범위 시각화, 실시간 가격 업데이트를 제공합니다.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="glass-card p-8">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-history text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Performance Tracking</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        과거 시그널의 성과를 자동 추적.
+                        Win rate, 평균 수익률, Profit factor를 실시간 확인합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="glass-card p-12">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">
+                    지금 바로 <span class="gradient-text">시작하세요</span>
+                </h2>
+                <p class="text-xl text-gray-400 mb-8">
+                    AI가 찾아낸 한국 주식 투자 기회를 확인해보세요
+                </p>
+                <a href="/app"
+                    class="hero-btn px-10 py-5 rounded-full text-white font-bold text-xl inline-flex items-center gap-3">
+                    <i class="fas fa-rocket"></i>
+                    Dashboard 열기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-white/10">
+        <div class="max-w-7xl mx-auto text-center text-gray-500 text-sm">
+            <p>© 2026 Quantix. AI-Powered KR Market Analysis System.</p>
+            <p class="mt-2">Built with GPT-5, Gemini 3.0, and VCP Pattern Recognition</p>
+        </div>
+    </footer>
+</body>
+
+</html>

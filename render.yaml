@@ -1,0 +1,36 @@
+# Render Blueprint Configuration
+# Deploy both services together with: render blueprint deploy
+
+services:
+  # Flask Backend API
+  - type: web
+    name: korea-stock-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn flask_app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: GEMINI_API_KEY
+        sync: false  # Set manually in dashboard
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: FRED_API_KEY
+        sync: false
+    healthCheckPath: /api/kr/market-status
+
+  # Next.js Frontend
+  - type: web
+    name: korea-stock-frontend
+    runtime: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: korea-stock-backend
+          property: host

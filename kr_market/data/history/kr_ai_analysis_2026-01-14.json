@@ -1,0 +1,1435 @@
+{
+  "market_indices": {
+    "kospi": {
+      "value": 4797.55,
+      "change_pct": 1.58
+    },
+    "kosdaq": {
+      "value": 951.16,
+      "change_pct": 0.95
+    }
+  },
+  "signals": [
+    {
+      "ticker": "095340",
+      "name": "ISC",
+      "market": "KOSDAQ GLOBAL",
+      "score": 97.0,
+      "contraction_ratio": 0.54,
+      "foreign_5d": 567673397,
+      "inst_5d": 756897863,
+      "entry_price": 107200.0,
+      "final_score": 112.6,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": "반도체",
+      "current_price": 105500,
+      "return_pct": -1.59,
+      "news": [
+        {
+          "title": "ISC, AI 반도체 테스트 소켓 수요 급증에 '함박웃음'",
+          "source": "전자신문",
+          "date": "2024-05-22"
+        },
+        {
+          "title": "SKC 자회사 ISC, HBM·CXL용 소켓 개발로 성장 동력 확보",
+          "source": "머니투데이",
+          "date": "2024-05-17"
+        },
+        {
+          "title": "기관·외국인 동시 러브콜...ISC, 주가 상승 기대감 고조",
+          "source": "한국경제",
+          "date": "2024-05-20"
+        }
+      ],
+      "gpt_recommendation": {
+        "action": "BUY",
+        "confidence": 85,
+        "reason": "외국인과 기관의 순매수 증가와 AI 반도체 수요 증가로 인한 성장 기대감"
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 90,
+        "reason": "매우 높은 VCP 점수와 함께 외국인/기관의 강력한 동반 순매수가 유입되고 있어, 기술적 분석과 수급 측면에서 모두 강력한 매수 신호로 판단됩니다."
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 80,
+        "L4_macro": 35,
+        "L5_institutional": 28,
+        "total": 273,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 89.6,
+      "tp1": 116050,
+      "tp2": 126600,
+      "stop_loss": 98115
+    },
+    {
+      "ticker": "058470",
+      "name": "리노공업",
+      "market": "KOSDAQ GLOBAL",
+      "score": 97.0,
+      "contraction_ratio": 0.54,
+      "foreign_5d": 905849727,
+      "inst_5d": 1207799636,
+      "entry_price": 64600.0,
+      "final_score": 112.6,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": "반도체",
+      "current_price": 64800,
+      "return_pct": 0.31,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인과 기관의 순매수가 긍정적이나, 재무지표 부재로 인해 확신 부족"
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 95,
+        "reason": "VCP Score 97점의 강력한 기술적 패턴과 외국인/기관의 동반 순매수 유입에 따른 상승 기대감"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 60,
+        "L4_macro": 35,
+        "L5_institutional": 28,
+        "total": 253,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 87.1,
+      "tp1": 71280,
+      "tp2": 77760,
+      "stop_loss": 60264
+    },
+    {
+      "ticker": "017800",
+      "name": "현대엘리베이터",
+      "market": "KOSPI",
+      "score": 90.0,
+      "contraction_ratio": 0.35,
+      "foreign_5d": 691822417,
+      "inst_5d": 922429890,
+      "entry_price": 87800.0,
+      "final_score": 115.5,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "25.33%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "683.00%",
+        "marcap": "31,664억원"
+      },
+      "theme": null,
+      "current_price": 87700,
+      "return_pct": -0.11,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인 및 기관의 순매수가 긍정적이며, ROE가 높아 수익성도 양호하지만, 현재 수익률이 미미하고 뉴스가 부족하여 추가적인 정보 확인이 필요함"
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 95,
+        "reason": "VCP 패턴 완성 및 외국인/기관의 강력한 동반 순매수에 따른 상승 돌파 기대"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 60,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 238,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 82.8,
+      "tp1": 96470,
+      "tp2": 105240,
+      "stop_loss": 81561
+    },
+    {
+      "ticker": "161390",
+      "name": "한국타이어앤테크놀로지",
+      "market": "KOSPI",
+      "score": 90.0,
+      "contraction_ratio": 0.37,
+      "foreign_5d": 445325512,
+      "inst_5d": 593767350,
+      "entry_price": 59500.0,
+      "final_score": 114.9,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "7.88%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "471.00%",
+        "marcap": "75,389억원"
+      },
+      "theme": null,
+      "current_price": 61800,
+      "return_pct": 3.87,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인과 기관의 순매수가 긍정적이며, 현재 수익률도 양호하여 추가 상승 가능성이 있음"
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 95,
+        "reason": "VCP 패턴 완성 단계 진입 및 외국인/기관의 강력한 동반 순매수 유입"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 60,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 238,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 82.8,
+      "tp1": 67980,
+      "tp2": 74160,
+      "stop_loss": 57474
+    },
+    {
+      "ticker": "105560",
+      "name": "KB금융",
+      "market": "KOSPI",
+      "score": 89.0,
+      "contraction_ratio": 0.41,
+      "foreign_5d": 2852814903,
+      "inst_5d": 3803753204,
+      "entry_price": 128900.0,
+      "final_score": 113.3,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "9.50%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "289.00%",
+        "marcap": "466,522억원"
+      },
+      "theme": null,
+      "current_price": 130100,
+      "return_pct": 0.93,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인 및 기관의 순매수가 긍정적이며 현재 수익률이 양호하나, PER 및 PBR 정보가 없어 추가적인 재무 분석이 필요함"
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 95,
+        "reason": "매우 높은 VCP 점수와 함께 외국인과 기관의 강력한 동반 순매수가 유입되어, 기술적 분석과 수급 측면에서 모두 긍정적인 신호를 보이고 있습니다."
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 60,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 238,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 82.4,
+      "tp1": 143110,
+      "tp2": 156120,
+      "stop_loss": 120993
+    },
+    {
+      "ticker": "316140",
+      "name": "우리금융지주",
+      "market": "KOSPI",
+      "score": 89.0,
+      "contraction_ratio": 0.42,
+      "foreign_5d": 1214366731,
+      "inst_5d": 1619155641,
+      "entry_price": 28050.0,
+      "final_score": 113.0,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "9.11%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "449.00%",
+        "marcap": "205,526억원"
+      },
+      "theme": null,
+      "current_price": 28000,
+      "return_pct": -0.18,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인과 기관의 순매수세가 긍정적이며, ROE가 양호한 수준이지만, 현재 수익률이 미미하고 최근 뉴스가 없어 관망이 적절함"
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 95,
+        "reason": "VCP 점수 89점의 강력한 기술적 신호와 외국인/기관의 양매수세가 동반되어 주가 상승 기대감이 매우 높음."
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 60,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 238,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 82.4,
+      "tp1": 30800,
+      "tp2": 33600,
+      "stop_loss": 26040
+    },
+    {
+      "ticker": "086790",
+      "name": "하나금융지주",
+      "market": "KOSPI",
+      "score": 91.0,
+      "contraction_ratio": 0.31,
+      "foreign_5d": 1625951687,
+      "inst_5d": 2167935583,
+      "entry_price": 96100.0,
+      "final_score": 117.1,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "9.08%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "472.00%",
+        "marcap": "263,574억원"
+      },
+      "theme": null,
+      "current_price": 96200,
+      "return_pct": 0.1,
+      "news": [
+        "하나금융, 1분기 호실적 발표... 주주환원 확대 기대감↑",
+        "정부 '기업 밸류업 프로그램' 본격화, 저PBR 금융주 수혜 전망",
+        "외국인, 하나금융지주 집중 매수... '밸류업' 선도주 부각"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 90,
+        "reason": "강력한 VCP 패턴 형성 및 외국인/기관의 동반 순매수 유입으로 주가 상승 모멘텀 기대"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 60,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 238,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 80.2,
+      "tp1": 105820,
+      "tp2": 115440,
+      "stop_loss": 89466
+    },
+    {
+      "ticker": "298380",
+      "name": "에이비엘바이오",
+      "market": "KOSDAQ",
+      "score": 90.0,
+      "contraction_ratio": 0.37,
+      "foreign_5d": 5579902811,
+      "inst_5d": 7439870415,
+      "entry_price": 192200.0,
+      "final_score": 114.9,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": null,
+      "current_price": 192600,
+      "return_pct": 0.21,
+      "news": [
+        {
+          "date": "2024-05-21",
+          "headline": "에이비엘바이오, ABL103 AACR 발표...차세대 면역항암제 가능성 확인",
+          "source": "머니투데이"
+        },
+        {
+          "date": "2024-05-14",
+          "headline": "에이비엘바이오, JP모간 헬스케어 컨퍼런스서 파이프라인 가치 재조명",
+          "source": "이데일리"
+        },
+        {
+          "date": "2024-04-30",
+          "headline": "파킨슨병 치료제 'ABL301' 임상 1상 순항...글로벌 빅파마 관심 집중",
+          "source": "한국경제"
+        }
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 90,
+        "reason": "VCP Score 90점의 강력한 기술적 패턴 완성 및 외국인/기관의 대규모 동반 순매수 유입으로 주가 상승 기대감이 매우 높음."
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 60,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 238,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 79.8,
+      "tp1": 211860,
+      "tp2": 231120,
+      "stop_loss": 179118
+    },
+    {
+      "ticker": "214150",
+      "name": "클래시스",
+      "market": "KOSDAQ GLOBAL",
+      "score": 88.0,
+      "contraction_ratio": 0.48,
+      "foreign_5d": 366930015,
+      "inst_5d": 489240020,
+      "entry_price": 58100.0,
+      "final_score": 110.8,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": null,
+      "current_price": 58400,
+      "return_pct": 0.52,
+      "news": [
+        "클래시스, 1분기 역대 최대 실적 달성... 해외 매출 성장세 '뚜렷'",
+        "증권가, 클래시스 목표주가 상향... '브라질 등 신흥 시장 모멘텀 기대'",
+        "클래시스, 주력 제품 '볼뉴머' 글로벌 시장 공략 가속화"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 90,
+        "reason": "높은 VCP 점수와 유의미한 가격 수축, 그리고 외국인/기관의 강력한 동반 순매수가 확인되어 상승 돌파 가능성이 높음"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 60,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 238,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 79.0,
+      "tp1": 64240,
+      "tp2": 70080,
+      "stop_loss": 54312
+    },
+    {
+      "ticker": "145020",
+      "name": "휴젤",
+      "market": "KOSDAQ GLOBAL",
+      "score": 88.0,
+      "contraction_ratio": 0.49,
+      "foreign_5d": 405948716,
+      "inst_5d": 541264955,
+      "entry_price": 233500.0,
+      "final_score": 110.5,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": null,
+      "current_price": 227500,
+      "return_pct": -2.57,
+      "news": [
+        "미국 국제무역위원회(ITC), 메디톡스와의 보툴리눔 톡신 균주 소송에서 휴젤 승소 최종 판결 (주요 불확실성 해소)",
+        "보툴리눔 톡신 '레티보(Letybo)'의 미국 시장 본격 진출에 따른 실적 성장 기대감 고조",
+        "1분기 호실적 전망 및 하반기로 갈수록 가속화될 해외 매출 성장 기대"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 90,
+        "reason": "강력한 VCP 기술적 패턴 완성 및 외국인/기관의 동시 순매수 유입"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 60,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 238,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 79.0,
+      "tp1": 250250,
+      "tp2": 273000,
+      "stop_loss": 211575
+    },
+    {
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 749000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "43.20%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "20.00%",
+        "marcap": "5,171,510억원"
+      },
+      "theme": "반도체",
+      "current_price": 749000,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "현재 가격이 진입가와 동일하며, 외국인 및 기관의 매수세가 없고, 최근 뉴스도 없어 추가적인 정보가 부족합니다. ROE가 높아 긍정적이지만, 다른 지표가 없어 관망을 추천합니다."
+      },
+      "gemini_recommendation": {
+        "action": "BUY",
+        "confidence": 85,
+        "reason": "AI 시대 핵심 부품인 HBM 시장 선점에 따른 성장 기대감"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 60,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 195,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 67.0,
+      "tp1": 823900,
+      "tp2": 898800,
+      "stop_loss": 696570
+    },
+    {
+      "ticker": "042700",
+      "name": "한미반도체",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 180000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "40.01%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "45.00%",
+        "marcap": "170,735억원"
+      },
+      "theme": "반도체",
+      "current_price": 180000,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "현재 가격이 진입가와 동일하며, ROE가 높은 편이나 외국인 및 기관의 매수세가 없어 관망이 필요합니다."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 85,
+        "reason": "VCP 패턴 형성으로 긍정적이나, 외국인/기관의 유의미한 순매수 부재로 방향성 확인이 필요한 구간"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 66.0,
+      "tp1": 198000,
+      "tp2": 216000,
+      "stop_loss": 167400
+    },
+    {
+      "ticker": "005930",
+      "name": "삼성전자",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 143900,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "8.33%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "105.00%",
+        "marcap": "9,621,273억원"
+      },
+      "theme": "반도체",
+      "current_price": 143900,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "현재 가격이 진입가와 동일하며, 외국인 및 기관의 순매수가 없고 최근 뉴스도 없어 추가적인 정보가 부족하여 관망을 추천합니다."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "변동성 축소 패턴(VCP)은 긍정적이나, 외국인/기관의 순매수 유입이 확인되지 않아 추세적 상승을 기대하기 어렵습니다."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 65.0,
+      "tp1": 158290,
+      "tp2": 172680,
+      "stop_loss": 133827
+    },
+    {
+      "ticker": "001440",
+      "name": "대한전선",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 25900,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "3.21%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "48,115억원"
+      },
+      "theme": "AI전력",
+      "current_price": 25900,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "현재 수익률이 0%로 변동이 없고, 외국인 및 기관의 순매수가 없어 관망이 필요함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 85,
+        "reason": "VCP 패턴 형성으로 기술적 기대감은 유효하나, 외국인/기관의 유의미한 순매수가 없어 추세 전환 확인이 필요함."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 65.0,
+      "tp1": 28490,
+      "tp2": 31080,
+      "stop_loss": 24087
+    },
+    {
+      "ticker": "005380",
+      "name": "현대차",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 422000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "9.84%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "243.00%",
+        "marcap": "1,098,451억원"
+      },
+      "theme": "환율수혜",
+      "current_price": 422000,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "현재 가격이 진입가와 동일하며, 외국인 및 기관의 순매수가 없어 추가적인 상승 모멘텀이 부족함. 그러나 ROE가 양호하여 관망 유지."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "기술적 분석상 변동성 축소 패턴(VCP)은 긍정적이나, 외국인/기관의 수급 부재로 추세 확인이 필요합니다."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 63.2,
+      "tp1": 464200,
+      "tp2": 506400,
+      "stop_loss": 392460
+    },
+    {
+      "ticker": "010120",
+      "name": "LS ELECTRIC",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 526000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "13.54%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "64.00%",
+        "marcap": "156,257억원"
+      },
+      "theme": "AI전력",
+      "current_price": 526000,
+      "return_pct": 0.0,
+      "news": [
+        "LS ELECTRIC, 북미 데이터센터향 변압기 수주 랠리에 주가 강세",
+        "전력기기 슈퍼사이클 도래, LS ELECTRIC 실적 기대감 고조",
+        "증권가, LS ELECTRIC 목표주가 상향... 'AI 전력망 확대 수혜'"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "기술적 분석상 변동성 축소 패턴은 긍정적이나, 외국인/기관의 수급 부재로 인해 추세 확인이 필요한 시점입니다."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 63.0,
+      "tp1": 578600,
+      "tp2": 631200,
+      "stop_loss": 489180
+    },
+    {
+      "ticker": "035420",
+      "name": "NAVER",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 247500,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "7.90%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "44.00%",
+        "marcap": "369,974억원"
+      },
+      "theme": "AI인프라",
+      "current_price": 247500,
+      "return_pct": 0.0,
+      "news": [
+        {
+          "date": "2024-05-31",
+          "headline": "네이버웹툰, 美 나스닥 상장 예비심사 통과... 기업가치 5조원 기대",
+          "source": "연합뉴스"
+        },
+        {
+          "date": "2024-05-28",
+          "headline": "네이버, AI B2B 사업 확장 가속화... '하이퍼클로바X' 기반 솔루션 강화",
+          "source": "전자신문"
+        },
+        {
+          "date": "2024-05-23",
+          "headline": "알리/테무 공세 속 네이버 커머스, '도착보장' 서비스로 방어선 구축",
+          "source": "매일경제"
+        }
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "기술적 분석상 변동성 축소 패턴은 긍정적이나, 외국인/기관의 수급 부재로 상승 동력이 부족하여 관망이 필요합니다."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 63.0,
+      "tp1": 272250,
+      "tp2": 297000,
+      "stop_loss": 230175
+    },
+    {
+      "ticker": "377300",
+      "name": "카카오페이",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 49700,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "2.75%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "67,167억원"
+      },
+      "theme": "AI인프라",
+      "current_price": 49700,
+      "return_pct": 0.0,
+      "news": [
+        "카카오페이, 1분기 실적 시장 기대치 하회... 수익성 개선 과제",
+        "알리바바, 카카오페이 지분 블록딜 가능성 지속... 오버행 우려 상존",
+        "카카오페이, MTS(모바일트레이딩시스템) 서비스 출시 임박... 증권업 시너지 기대"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "기술적으로 변동성 축소 패턴(VCP)이 형성되고 있으나, 외국인/기관의 유의미한 순매수가 없어 추세 전환 확인이 필요합니다."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 63.0,
+      "tp1": 54670,
+      "tp2": 59640,
+      "stop_loss": 46221
+    },
+    {
+      "ticker": "047810",
+      "name": "한국항공우주",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 166600,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "7.70%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "32.00%",
+        "marcap": "162,393억원"
+      },
+      "theme": "방산",
+      "current_price": 166600,
+      "return_pct": 0.0,
+      "news": [
+        "KAI, 폴란드 이어 중동·아프리카로 FA-50 수출 확대 기대감",
+        "KF-21 보라매, 공중급유 시험 성공...전력화 '성큼'",
+        "한국항공우주, 4분기 실적 시장 기대치 하회...수주 공백 우려",
+        "정부, 우주항공청 설립 본격화...KAI 등 관련주 수혜 전망"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "VCP 기술적 패턴은 긍정적이나, 주가 상승을 이끌 외국인/기관의 수급이 부재하여 관망이 필요한 시점입니다."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 62.7,
+      "tp1": 183260,
+      "tp2": 199920,
+      "stop_loss": 154938
+    },
+    {
+      "ticker": "079550",
+      "name": "LIG넥스원",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 556000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "23.37%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "60.00%",
+        "marcap": "121,459억원"
+      },
+      "theme": "방산",
+      "current_price": 556000,
+      "return_pct": 0.0,
+      "news": [
+        "사우디아라비아와 4.3조원 규모 '천궁-II' 대규모 수출 계약 체결",
+        "수출 호조에 따른 2024년 역대 최대 실적 달성 기대감",
+        "루마니아 등 동유럽 국가로의 추가적인 방산 수출 가능성 부각"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "긍정적인 VCP 패턴 형성에도 불구하고, 외국인/기관의 수급 부재로 인해 추세적 상승을 확인하기 전까지는 관망이 유리합니다."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 62.7,
+      "tp1": 611600,
+      "tp2": 667200,
+      "stop_loss": 517080
+    },
+    {
+      "ticker": "096770",
+      "name": "SK이노베이션",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 107600,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "-6.49%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "192.00%",
+        "marcap": "179,811억원"
+      },
+      "theme": "환율수혜",
+      "current_price": 107600,
+      "return_pct": 0.0,
+      "news": [
+        "SK온, 흑자전환 가시성↑…하반기 실적 개선 기대감",
+        "유가 변동성 확대, SK이노베이션 정유 부문 실적 영향은?",
+        "전기차 시장 성장 둔화 우려, 2차전지 소재주 투자심리 위축"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "기술적으로 긍정적인 변동성 축소 패턴이 관찰되나, 주요 수급 주체의 부재로 추세 확인이 필요한 관망 시점."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 62.7,
+      "tp1": 118360,
+      "tp2": 129120,
+      "stop_loss": 100068
+    },
+    {
+      "ticker": "035760",
+      "name": "CJ ENM",
+      "market": "KOSDAQ GLOBAL",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 63300,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": "AI인프라",
+      "current_price": 63300,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "현재 주가 변동성이 낮고, 외국인 및 기관의 매수세가 없어 관망이 적절함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "VCP 점수와 수축비율은 긍정적이나, 외국인/기관의 수급 부재로 본격적인 상승 추세 전환을 확인해야 할 시점입니다."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 62.5,
+      "tp1": 69630,
+      "tp2": 75960,
+      "stop_loss": 58869
+    },
+    {
+      "ticker": "329180",
+      "name": "HD현대중공업",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 631000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "21.68%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "61.00%",
+        "marcap": "662,305억원"
+      },
+      "theme": "조선",
+      "current_price": 631000,
+      "return_pct": 0.0,
+      "news": [
+        "HD현대중공업, 페루서 함정 4척 6200억원에 수주…중남미 방산 수출 확대",
+        "카타르 2차 LNG 프로젝트 발주 임박, 국내 조선 3사 수주 기대감 고조",
+        "조선업 호황 지속 전망, 친환경 선박 교체 수요 증가로 실적 개선 기대",
+        "HD현대중공업, 차세대 이지스함 등 특수선 부문 경쟁력 강화"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 65,
+        "reason": "변동성 축소 패턴(VCP) 형성으로 기술적 상승 기대감은 유효하나, 외국인/기관의 수급 유입이 확인되지 않아 추세 확인 후 접근이 필요합니다."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.7,
+      "tp1": 694100,
+      "tp2": 757200,
+      "stop_loss": 586830
+    },
+    {
+      "ticker": "010140",
+      "name": "삼성중공업",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 30150,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "8.94%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "257,526억원"
+      },
+      "theme": "조선",
+      "current_price": 30150,
+      "return_pct": 0.0,
+      "news": [
+        "삼성중공업, 1.5조원 규모 FLNG 수주...올해 목표 83% 달성",
+        "신조선가 16년만에 최고치...조선업계, 하반기 흑자전환 기대감",
+        "삼성중공업, 암모니아 실증 설비 투자...친환경 선박 기술 선도"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "VCP 패턴 형성으로 기술적 기대감은 유효하나, 주요 수급 주체의 부재로 관망 필요."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.2,
+      "tp1": 33165,
+      "tp2": 36180,
+      "stop_loss": 28039
+    },
+    {
+      "ticker": "005490",
+      "name": "POSCO홀딩스",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 351500,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "0.18%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "290.00%",
+        "marcap": "265,807억원"
+      },
+      "theme": "환율수혜",
+      "current_price": 351500,
+      "return_pct": 0.0,
+      "news": [
+        "2분기 실적, 철강 시황 부진으로 시장 기대치 하회 전망",
+        "아르헨티나 리튬 염호 2단계 상공정 착공, 미래 성장 동력 확보 가속화",
+        "자사주 매입 및 소각 결정 등 주주환원 정책 강화 기대감"
+      ],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "기술적 변동성 축소 패턴은 긍정적이나, 외국인/기관의 수급 유입이 확인되지 않아 추세 전환을 기다리는 관망 전략이 유효합니다."
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.2,
+      "tp1": 386650,
+      "tp2": 421800,
+      "stop_loss": 326895
+    }
+  ],
+  "generated_at": "2026-01-15T23:55:52.415305",
+  "signal_date": "2026-01-14"
+}

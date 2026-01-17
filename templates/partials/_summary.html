@@ -1,0 +1,200 @@
+<!-- Summary Content -->
+<div id="content-summary">
+    <!-- Header Section -->
+    <div class="mb-8">
+        <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/5 text-xs text-purple-400 font-medium mb-4">
+            <span class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-ping"></span>
+            Portfolio Alpha v3.0
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tighter text-white leading-tight mb-2">
+            투자 <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">인텔리전스</span>
+        </h2>
+        <p class="text-gray-400 text-lg">전체 시장 현황 및 포트폴리오 성과 요약</p>
+    </div>
+
+    <!-- Hero Card: Portfolio Performance -->
+    <section class="mb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <!-- US Total Return Alpha -->
+            <div class="relative overflow-hidden group">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-indigo-600/10 to-transparent blur-3xl rounded-3xl -z-10 group-hover:from-purple-600/30 transition-all duration-700">
+                </div>
+                <div
+                    class="bg-[#1c1c1e]/80 backdrop-blur-xl rounded-3xl p-6 border border-white/10 relative overflow-hidden h-full">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="text-sm font-bold text-purple-400 uppercase tracking-widest mb-1">🇺🇸 US Alpha
+                            </h3>
+                            <p class="text-xs text-gray-400">$1,000 per stock</p>
+                        </div>
+                        <div class="text-right">
+                            <p id="summary-us-status" class="text-xs text-mono text-purple-400 font-bold">Loading...</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start py-2">
+                        <h1 id="summary-us-return"
+                            class="text-5xl md:text-6xl font-black text-white tracking-tighter mb-2">--%</h1>
+                        <div class="flex items-center gap-3 justify-center md:justify-start">
+                            <p id="summary-us-value" class="text-gray-400 font-mono text-sm">$-- → $--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KR VCP Cumulative Return -->
+            <div class="relative overflow-hidden group">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-rose-600/20 via-amber-600/10 to-transparent blur-3xl rounded-3xl -z-10 group-hover:from-rose-600/30 transition-all duration-700">
+                </div>
+                <div
+                    class="bg-[#1c1c1e]/80 backdrop-blur-xl rounded-3xl p-6 border border-white/10 relative overflow-hidden h-full">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="text-sm font-bold text-rose-400 uppercase tracking-widest mb-1">🇰🇷 KR VCP Alpha
+                            </h3>
+                            <p class="text-xs text-gray-400">₩1,000,000 per stock</p>
+                        </div>
+                        <div class="text-right">
+                            <p id="summary-kr-status" class="text-xs text-mono text-rose-400 font-bold">Loading...</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center md:items-start py-2">
+                        <h1 id="summary-kr-return"
+                            class="text-5xl md:text-6xl font-black text-white tracking-tighter mb-2">--%</h1>
+                        <div class="flex items-center gap-3 justify-center md:justify-start">
+                            <p id="summary-kr-value" class="text-gray-400 font-mono text-sm">₩-- → ₩--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Health Index -->
+    <section class="mb-8">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                시장 건전성 지수 (Market Gate)
+            </h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- US Gate Card -->
+            <div
+                class="p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 hover:border-blue-500/30 transition-all duration-300 relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity text-blue-500">
+                    <i class="fas fa-flag-usa text-3xl"></i>
+                </div>
+                <div class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">미국 시장 (US)</div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-4xl font-black text-white">--</p>
+                        <p class="text-[9px] text-gray-500 mt-1 uppercase">점수 (0-100)</p>
+                    </div>
+                    <div class="flex flex-col items-end gap-2">
+                        <span
+                            class="px-3 py-1 rounded-full text-[10px] font-bold bg-white/5 border border-white/10">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KR Gate Card -->
+            <div
+                class="p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 hover:border-rose-500/30 transition-all duration-300 relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity text-rose-500">
+                    <i class="fas fa-chart-line text-3xl"></i>
+                </div>
+                <div class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">한국 시장 (KR)</div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-4xl font-black text-white">--</p>
+                        <p class="text-[9px] text-gray-500 mt-1 uppercase">점수 (0-100)</p>
+                    </div>
+                    <div class="flex flex-col items-end gap-2">
+                        <span
+                            class="px-3 py-1 rounded-full text-[10px] font-bold bg-white/5 border border-white/10">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crypto Gate Card -->
+            <div
+                class="p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 hover:border-amber-500/30 transition-all duration-300 relative overflow-hidden group">
+                <div
+                    class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity text-amber-500">
+                    <i class="fab fa-bitcoin text-3xl"></i>
+                </div>
+                <div class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">암호화폐 (Crypto)</div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-4xl font-black text-white">--</p>
+                        <p class="text-[9px] text-gray-500 mt-1 uppercase">점수 (0-100)</p>
+                    </div>
+                    <div class="flex flex-col items-end gap-2">
+                        <span
+                            class="px-3 py-1 rounded-full text-[10px] font-bold bg-white/5 border border-white/10">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a href="#"
+                onclick="switchMarketTab(this.parentElement.parentElement.parentElement.querySelector('.nav-item:nth-child(2)'), 'KR Market')"
+                class="p-6 rounded-2xl bg-gradient-to-br from-rose-900/30 to-rose-900/10 border border-rose-500/20 hover:border-rose-500/40 transition-all group">
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="text-sm font-bold text-rose-400">한국 주식 (KR)</h4>
+                    <i class="fas fa-arrow-right text-rose-400 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+                <p class="text-xs text-gray-400">VCP 시그널 & AI 추천 확인</p>
+            </a>
+
+            <a href="#"
+                onclick="switchMarketTab(this.parentElement.parentElement.parentElement.querySelector('.nav-item:nth-child(3)'), 'Crypto')"
+                class="p-6 rounded-2xl bg-gradient-to-br from-amber-900/30 to-amber-900/10 border border-amber-500/20 hover:border-amber-500/40 transition-all group">
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="text-sm font-bold text-amber-400">암호화폐 (Crypto)</h4>
+                    <i class="fas fa-arrow-right text-amber-400 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+                <p class="text-xs text-gray-400">비트코인 VCP 스캔 & 알트코인 분석</p>
+            </a>
+
+            <a href="#"
+                onclick="switchMarketTab(this.parentElement.parentElement.parentElement.querySelector('.nav-item:nth-child(4)'), 'US Market')"
+                class="p-6 rounded-2xl bg-gradient-to-br from-blue-900/30 to-blue-900/10 border border-blue-500/20 hover:border-blue-500/40 transition-all group">
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="text-sm font-bold text-blue-400">미국 주식 (US)</h4>
+                    <i class="fas fa-arrow-right text-blue-400 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+                <p class="text-xs text-gray-400">기관 수급 추적 & 옵션 분석</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- System Status -->
+    <div class="p-4 rounded-xl bg-gradient-to-r from-purple-900/20 to-indigo-900/20 border border-purple-500/20">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span class="text-sm font-bold text-white">All Systems Operational</span>
+            </div>
+            <span class="text-xs text-gray-400">Last updated: <span id="system-last-update">--:--</span></span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Update system time
+    setInterval(() => {
+        const el = document.getElementById('system-last-update');
+        if (el) {
+            el.textContent = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+        }
+    }, 1000);
+</script>

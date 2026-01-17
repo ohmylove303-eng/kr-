@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-01-17T09:50:23.588251",
+  "ticker": "090360",
+  "final_score": 87,
+  "gates": {
+    "L1_Liquidity": {
+      "passed": true,
+      "score": 100,
+      "reason": "Turnover: 349.3억 (Min 100.0억)",
+      "details": {
+        "turnover": 34931230180.0
+      }
+    },
+    "L2_VCP": {
+      "passed": true,
+      "score": 70,
+      "reason": "Contraction: 0.60",
+      "details": {
+        "ticker": "090360",
+        "current_price": 79600.0,
+        "entry_price": 79600.0,
+        "score": 74,
+        "contraction_ratio": 0.6,
+        "foreign_5d": 1158822276,
+        "inst_5d": 1545096368,
+        "signal_date": "2026-01-17"
+      }
+    },
+    "L3_Flow": {
+      "passed": true,
+      "score": 100,
+      "reason": "Net Flow: 2703918644",
+      "details": {
+        "foreign": 1158822276,
+        "inst": 1545096368
+      }
+    },
+    "L4_Quality": {
+      "passed": true,
+      "score": 80,
+      "reason": "Market Cap Pass",
+      "details": {
+        "cap": 1000.0
+      }
+    }
+  },
+  "execution_plan": {
+    "ticker": "090360",
+    "action": "BUY",
+    "entry_price": 79600,
+    "stop_loss": 74000,
+    "tp1": 91500,
+    "tp2": 103500,
+    "quantity": 12,
+    "time_stop_date": "2026-02-01",
+    "risk_reward_ratio": 2.12
+  },
+  "metadata": {
+    "engine": "KR-NICE-vPerfect",
+    "gate_weights": "standard"
+  }
+}

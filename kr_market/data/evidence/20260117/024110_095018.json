@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-01-17T09:50:18.090267",
+  "ticker": "024110",
+  "final_score": 87,
+  "gates": {
+    "L1_Liquidity": {
+      "passed": true,
+      "score": 100,
+      "reason": "Turnover: 187.3억 (Min 100.0억)",
+      "details": {
+        "turnover": 18725294500.0
+      }
+    },
+    "L2_VCP": {
+      "passed": true,
+      "score": 73,
+      "reason": "Contraction: 0.54",
+      "details": {
+        "ticker": "024110",
+        "current_price": 20500.0,
+        "entry_price": 20500.0,
+        "score": 84,
+        "contraction_ratio": 0.54,
+        "foreign_5d": 579509530,
+        "inst_5d": 772679374,
+        "signal_date": "2026-01-17"
+      }
+    },
+    "L3_Flow": {
+      "passed": true,
+      "score": 100,
+      "reason": "Net Flow: 1352188904",
+      "details": {
+        "foreign": 579509530,
+        "inst": 772679374
+      }
+    },
+    "L4_Quality": {
+      "passed": true,
+      "score": 80,
+      "reason": "Market Cap Pass",
+      "details": {
+        "cap": 1000.0
+      }
+    }
+  },
+  "execution_plan": {
+    "ticker": "024110",
+    "action": "BUY",
+    "entry_price": 20500,
+    "stop_loss": 19050,
+    "tp1": 23550,
+    "tp2": 26650,
+    "quantity": 48,
+    "time_stop_date": "2026-02-01",
+    "risk_reward_ratio": 2.1
+  },
+  "metadata": {
+    "engine": "KR-NICE-vPerfect",
+    "gate_weights": "standard"
+  }
+}

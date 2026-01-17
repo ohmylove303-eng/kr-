@@ -1,0 +1,1336 @@
+{
+  "market_indices": {
+    "kospi": {
+      "value": 4723.1,
+      "change_pct": 0.65
+    },
+    "kosdaq": {
+      "value": 942.18,
+      "change_pct": -0.72
+    }
+  },
+  "signals": [
+    {
+      "ticker": "065350",
+      "name": "신성델타테크",
+      "market": "KOSDAQ",
+      "score": 90.0,
+      "contraction_ratio": 0.36,
+      "foreign_5d": 458158807,
+      "inst_5d": 610878409,
+      "entry_price": 11120.0,
+      "final_score": 115.2,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": null,
+      "current_price": 58700,
+      "return_pct": 427.88,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 85,
+        "reason": "외국인과 기관의 강한 순매수세와 높은 VCP Score를 고려할 때 추가 상승 여력이 있을 수 있으나, 현재 수익률이 높아 관망이 필요함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 50,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 228,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 78.3,
+      "tp1": 64570,
+      "tp2": 70440,
+      "stop_loss": 54591
+    },
+    {
+      "ticker": "196170",
+      "name": "알테오젠",
+      "market": "KOSDAQ GLOBAL",
+      "score": 90.0,
+      "contraction_ratio": 0.36,
+      "foreign_5d": 458158807,
+      "inst_5d": 610878409,
+      "entry_price": 11120.0,
+      "final_score": 115.2,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": null,
+      "current_price": 467000,
+      "return_pct": 4099.64,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 85,
+        "reason": "외국인과 기관의 순매수가 강력하고, 현재 수익률이 매우 높아 추가 상승 가능성이 있지만, 재무지표 부재로 인해 신중한 접근이 필요함."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 50,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 228,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 78.3,
+      "tp1": 513700,
+      "tp2": 560400,
+      "stop_loss": 434310
+    },
+    {
+      "ticker": "491000",
+      "name": "리브스메드",
+      "market": "KOSDAQ",
+      "score": 90.0,
+      "contraction_ratio": 0.36,
+      "foreign_5d": 458158807,
+      "inst_5d": 610878409,
+      "entry_price": 11120.0,
+      "final_score": 115.2,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "14,019억원"
+      },
+      "theme": null,
+      "current_price": 56800,
+      "return_pct": 410.79,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인 및 기관의 순매수세가 강하고, 현재 수익률이 높아 추가 상승 여력이 있을 수 있음"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 50,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 228,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 77.3,
+      "tp1": 62480,
+      "tp2": 68160,
+      "stop_loss": 52824
+    },
+    {
+      "ticker": "323280",
+      "name": "태성",
+      "market": "KOSDAQ",
+      "score": 90.0,
+      "contraction_ratio": 0.36,
+      "foreign_5d": 458158807,
+      "inst_5d": 610878409,
+      "entry_price": 11120.0,
+      "final_score": 115.2,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": null,
+      "current_price": 37300,
+      "return_pct": 235.43,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인과 기관의 순매수가 지속되고 있으며, 현재 수익률이 높아 추가 상승 가능성이 있지만, 재무지표가 부족하여 신중한 관망이 필요함."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 50,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 228,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 77.3,
+      "tp1": 41030,
+      "tp2": 44760,
+      "stop_loss": 34689
+    },
+    {
+      "ticker": "204270",
+      "name": "제이앤티씨",
+      "market": "KOSDAQ",
+      "score": 90.0,
+      "contraction_ratio": 0.36,
+      "foreign_5d": 458158807,
+      "inst_5d": 610878409,
+      "entry_price": 11120.0,
+      "final_score": 115.2,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": null,
+      "current_price": 18050,
+      "return_pct": 62.32,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인 및 기관의 강한 순매수와 높은 VCP Score를 고려할 때 추가 상승 여력이 있을 수 있지만, 재무지표 부재로 인해 신중한 접근이 필요함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 50,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 228,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 77.3,
+      "tp1": 19855,
+      "tp2": 21660,
+      "stop_loss": 16786
+    },
+    {
+      "ticker": "328130",
+      "name": "루닛",
+      "market": "KOSDAQ",
+      "score": 90.0,
+      "contraction_ratio": 0.36,
+      "foreign_5d": 458158807,
+      "inst_5d": 610878409,
+      "entry_price": 11120.0,
+      "final_score": 115.2,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": null,
+      "current_price": 38150,
+      "return_pct": 243.08,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인과 기관의 순매수가 강력하며, 현재 수익률이 높아 추가 상승 가능성이 있지만, 재무지표 부재로 인해 신중한 접근이 필요"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 50,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 228,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 77.3,
+      "tp1": 41965,
+      "tp2": 45780,
+      "stop_loss": 35479
+    },
+    {
+      "ticker": "178320",
+      "name": "서진시스템",
+      "market": "KOSDAQ",
+      "score": 90.0,
+      "contraction_ratio": 0.36,
+      "foreign_5d": 458158807,
+      "inst_5d": 610878409,
+      "entry_price": 11120.0,
+      "final_score": 115.2,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": null,
+      "current_price": 27300,
+      "return_pct": 145.5,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인 및 기관의 순매수세가 강하고, 현재 수익률이 높아 추가 상승 여력이 있을 수 있음"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 50,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 228,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 77.3,
+      "tp1": 30030,
+      "tp2": 32760,
+      "stop_loss": 25389
+    },
+    {
+      "ticker": "437730",
+      "name": "삼현",
+      "market": "KOSDAQ",
+      "score": 90.0,
+      "contraction_ratio": 0.36,
+      "foreign_5d": 458158807,
+      "inst_5d": 610878409,
+      "entry_price": 11120.0,
+      "final_score": 115.2,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": null,
+      "current_price": 63100,
+      "return_pct": 467.45,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 75,
+        "reason": "외국인 및 기관의 순매수가 지속되고 있으며, 현재 수익률이 높아 추가 상승 가능성이 있음"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 50,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 228,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 77.3,
+      "tp1": 69410,
+      "tp2": 75720,
+      "stop_loss": 58683
+    },
+    {
+      "ticker": "307950",
+      "name": "현대오토에버",
+      "market": "KOSPI",
+      "score": 84.0,
+      "contraction_ratio": 0.42,
+      "foreign_5d": 1181326812,
+      "inst_5d": 1575102416,
+      "entry_price": 27300.0,
+      "final_score": 111.0,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "10.53%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "36.00%",
+        "marcap": "135,058억원"
+      },
+      "theme": null,
+      "current_price": 492500,
+      "return_pct": 1704.03,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 85,
+        "reason": "외국인과 기관의 순매수가 강하고, 높은 수익률을 기록 중이지만, 추가적인 뉴스나 재무지표의 부재로 인해 관망이 적절함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 50,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 228,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 75.9,
+      "tp1": 541750,
+      "tp2": 591000,
+      "stop_loss": 458025
+    },
+    {
+      "ticker": "439260",
+      "name": "대한조선",
+      "market": "KOSPI",
+      "score": 84.0,
+      "contraction_ratio": 0.4,
+      "foreign_5d": 1546141760,
+      "inst_5d": 2061522347,
+      "entry_price": 92900.0,
+      "final_score": 111.6,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "26,313억원"
+      },
+      "theme": null,
+      "current_price": 68300,
+      "return_pct": -26.48,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "외국인과 기관의 순매수가 긍정적이지만, 재무지표 부재와 최근 뉴스 부족으로 인해 추가 정보가 필요합니다."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 100,
+        "L2_supply": 30,
+        "L3_sentiment": 50,
+        "L4_macro": 20,
+        "L5_institutional": 28,
+        "total": 228,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 74.4,
+      "tp1": 75130,
+      "tp2": 81960,
+      "stop_loss": 63519
+    },
+    {
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 742000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "43.20%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "20.00%",
+        "marcap": "5,123,178억원"
+      },
+      "theme": "반도체",
+      "current_price": 742000,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "현재 가격 변동이 없고, 외국인 및 기관의 매수세가 없는 상황에서 관망이 적절합니다."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 62.5,
+      "tp1": 816200,
+      "tp2": 890400,
+      "stop_loss": 690060
+    },
+    {
+      "ticker": "267260",
+      "name": "HD현대일렉트릭",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 922000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "38.58%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "82.00%",
+        "marcap": "331,852억원"
+      },
+      "theme": "AI전력",
+      "current_price": 922000,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "현재 가격이 진입가와 동일하며, 외국인 및 기관의 순매수가 없는 상황에서 추가적인 정보가 필요함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 62.5,
+      "tp1": 1014200,
+      "tp2": 1106400,
+      "stop_loss": 857460
+    },
+    {
+      "ticker": "005930",
+      "name": "삼성전자",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 140300,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "8.33%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "108.00%",
+        "marcap": "9,380,574억원"
+      },
+      "theme": "반도체",
+      "current_price": 140300,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "현재 가격 변동이 없고, 외국인 및 기관의 매수세가 없는 상황에서 관망을 추천합니다."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 62.5,
+      "tp1": 154330,
+      "tp2": 168360,
+      "stop_loss": 130479
+    },
+    {
+      "ticker": "000270",
+      "name": "기아",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 143000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "14.09%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "478.00%",
+        "marcap": "552,871억원"
+      },
+      "theme": "환율수혜",
+      "current_price": 143000,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "현재 주가가 진입가와 동일하며, 외국인 및 기관의 매수세가 없고, 최근 뉴스도 없어 추가적인 정보를 기다리는 것이 바람직함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 62.2,
+      "tp1": 157300,
+      "tp2": 171600,
+      "stop_loss": 132990
+    },
+    {
+      "ticker": "009540",
+      "name": "HD한국조선해양",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 427500,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "18.04%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "179.00%",
+        "marcap": "302,305억원"
+      },
+      "theme": "조선",
+      "current_price": 427500,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "현재 주가가 진입가와 동일하며, 외국인 및 기관의 매수세가 없고, 최근 뉴스도 없어 추가적인 정보가 필요합니다."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 62.2,
+      "tp1": 470250,
+      "tp2": 513000,
+      "stop_loss": 397575
+    },
+    {
+      "ticker": "005380",
+      "name": "현대차",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 411500,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "9.84%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "246.00%",
+        "marcap": "1,071,120억원"
+      },
+      "theme": "환율수혜",
+      "current_price": 411500,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 70,
+        "reason": "현재 주가가 진입가와 동일하며, 외국인과 기관의 매수세가 없으나 ROE가 양호하여 관망이 적절함."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 62.2,
+      "tp1": 452650,
+      "tp2": 493800,
+      "stop_loss": 382695
+    },
+    {
+      "ticker": "035760",
+      "name": "CJ ENM",
+      "market": "KOSDAQ GLOBAL",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 63100,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": "AI인프라",
+      "current_price": 63100,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "현재 주가가 진입가와 동일하고, 외국인 및 기관의 매수세가 없으며, 재무지표가 제공되지 않아 추가적인 정보가 필요함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.5,
+      "tp1": 69410,
+      "tp2": 75720,
+      "stop_loss": 58683
+    },
+    {
+      "ticker": "103590",
+      "name": "일진전기",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 63100,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "16.29%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "57.00%",
+        "marcap": "30,084억원"
+      },
+      "theme": "AI전력",
+      "current_price": 63100,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "현재 수익률이 0%이며, 외국인 및 기관의 매수세가 없고, 최근 뉴스도 없어 추가적인 정보가 부족합니다. ROE는 양호하나, PER 및 PBR 정보가 없어 신중한 관망이 필요합니다."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.5,
+      "tp1": 69410,
+      "tp2": 75720,
+      "stop_loss": 58683
+    },
+    {
+      "ticker": "000500",
+      "name": "000500",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 92800,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "11.85%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "15,352억원"
+      },
+      "theme": "AI전력",
+      "current_price": 92800,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "VCP Score가 양호하고 ROE가 긍정적이지만, 외국인 및 기관의 매수세가 없고 최근 뉴스가 부족하여 관망이 적절함."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.5,
+      "tp1": 102080,
+      "tp2": 111360,
+      "stop_loss": 86304
+    },
+    {
+      "ticker": "024090",
+      "name": "024090",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 11740,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "11.57%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "618.00%",
+        "marcap": "1,010억원"
+      },
+      "theme": "AI전력",
+      "current_price": 11740,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "외국인 및 기관의 매수세가 없고, 현재 수익률이 0%로 변동이 없으며, 추가적인 뉴스나 정보가 부족하여 관망이 필요함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.5,
+      "tp1": 12914,
+      "tp2": 14088,
+      "stop_loss": 10918
+    },
+    {
+      "ticker": "058470",
+      "name": "리노공업",
+      "market": "KOSDAQ GLOBAL",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 64600,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": "반도체",
+      "current_price": 64600,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "현재 가격 변동이 없고, 외국인 및 기관의 매수세가 없어 관망이 필요함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.5,
+      "tp1": 71060,
+      "tp2": 77520,
+      "stop_loss": 60078
+    },
+    {
+      "ticker": "010120",
+      "name": "LS ELECTRIC",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 539000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "13.54%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "64.00%",
+        "marcap": "160,119억원"
+      },
+      "theme": "AI전력",
+      "current_price": 539000,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "현재 가격이 진입가와 동일하고, 외국인 및 기관의 순매수가 없는 상황에서 추가적인 정보가 부족하여 관망을 추천합니다."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.5,
+      "tp1": 592900,
+      "tp2": 646800,
+      "stop_loss": 501270
+    },
+    {
+      "ticker": "042700",
+      "name": "한미반도체",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 177800,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "40.01%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "46.00%",
+        "marcap": "168,648억원"
+      },
+      "theme": "반도체",
+      "current_price": 177800,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "현재 수익률이 0%이며, 외국인 및 기관의 매수세가 없고, 최근 뉴스도 없어 추가적인 정보가 필요함"
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 35,
+        "L5_institutional": 12,
+        "total": 185,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.5,
+      "tp1": 195580,
+      "tp2": 213360,
+      "stop_loss": 165354
+    },
+    {
+      "ticker": "079550",
+      "name": "LIG넥스원",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 556000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "23.37%",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "60.00%",
+        "marcap": "121,459억원"
+      },
+      "theme": "방산",
+      "current_price": 556000,
+      "return_pct": 0.0,
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 60,
+        "reason": "현재 가격이 진입가와 동일하며, 외국인 및 기관의 매수세가 없고, 최신 뉴스가 없어 추가적인 정보가 필요합니다."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 61.2,
+      "tp1": 611600,
+      "tp2": 667200,
+      "stop_loss": 517080
+    },
+    {
+      "ticker": "059960",
+      "name": "059960",
+      "market": "KOSPI",
+      "score": 65,
+      "contraction_ratio": 0.5,
+      "foreign_5d": 0,
+      "inst_5d": 0,
+      "entry_price": 10000,
+      "final_score": 55,
+      "fundamentals": {
+        "per": "N/A",
+        "pbr": "N/A",
+        "roe": "N/A",
+        "eps": "N/A",
+        "bps": "N/A",
+        "div_yield": "N/A",
+        "marcap": "N/A"
+      },
+      "theme": "방산",
+      "news": [],
+      "gpt_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "종목에 대한 정보가 부족하고 최근 뉴스가 없어 추가적인 분석이 필요합니다."
+      },
+      "gemini_recommendation": {
+        "action": "HOLD",
+        "confidence": 50,
+        "reason": "분석 실패"
+      },
+      "nice_layers": {
+        "L1_technical": 78,
+        "L2_supply": 10,
+        "L3_sentiment": 50,
+        "L4_macro": 32,
+        "L5_institutional": 12,
+        "total": 182,
+        "max_total": 300
+      },
+      "valuation": {
+        "grade": "B",
+        "description": "적정 가치",
+        "per": "N/A",
+        "pbr": "N/A"
+      },
+      "final_recommendation_score": 60.2
+    }
+  ],
+  "generated_at": "2026-01-14T23:33:17.676586",
+  "signal_date": "2026-01-09"
+}

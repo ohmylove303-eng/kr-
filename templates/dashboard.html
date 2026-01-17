@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantix Dashboard - KR Market AI Analysis</title>
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Charts -->
+    <script src="https://unpkg.com/lightweight-charts@3.8.0/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- TradingView Widget Script -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+
+    <!-- Utilities -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* ========== Apple Dark Mode Design System ========== */
+        :root {
+            /* Backgrounds */
+            --bg-page: #000000;
+            --bg-surface: #1c1c1e;
+            --bg-surface-hover: #2c2c2e;
+            --bg-glass: rgba(28, 28, 30, 0.75);
+
+            /* Borders */
+            --border-color: rgba(255, 255, 255, 0.1);
+
+            /* Text */
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --text-tertiary: #6e6e73;
+
+            /* Accents */
+            --accent: #2997ff;
+            --status-success: #30d158;
+            --status-error: #ff453a;
+            --status-warning: #ff9f0a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Inter", sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-primary);
+            font-size: 14px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Glassmorphism */
+        .apple-glass {
+            background-color: rgba(28, 28, 30, 0.65);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Modern Card */
+        .bg-\[#1a1a1a\],
+        .bg-\[#1c1c1e\] {
+            background-color: var(--bg-surface) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .bg-\[#1a1a1a\]:hover,
+        .bg-\[#1c1c1e\]:hover {
+            background-color: var(--bg-surface-hover) !important;
+        }
+
+        /* AI Badges */
+        .badge-premium {
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Pulse Glow Animation */
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 0 25px rgba(16, 185, 129, 0.3);
+            }
+
+            100% {
+                box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Nav Item */
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <aside id="main-sidebar" class="w-64 lg:w-56 apple-glass flex flex-col h-full shrink-0 transition-all z-50">
+        <!-- Logo -->
+        <div class="h-16 flex items-center gap-3 px-4 border-b border-[#27272a]">
+            <i class="fas fa-chart-line text-2xl text-blue-500"></i>
+            <span id="brand-text" class="font-black text-xl text-white tracking-tight">Quantix</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 py-4 px-3 space-y-1 overflow-y-auto custom-scrollbar">
+            <a href="#" onclick="switchMarketTab(this, 'Portfolio Summary')" class="nav-item active text-gray-400">
+                <i class="fas fa-th-large"></i>
+                <span class="nav-text">Summary</span>
+            </a>
+            <a href="#" onclick="switchMarketTab(this, 'KR Market')" class="nav-item text-gray-400">
+                <i class="fas fa-won-sign"></i>
+                <span class="nav-text">KR Market</span>
+            </a>
+            <a href="#" onclick="switchMarketTab(this, 'Crypto')" class="nav-item text-gray-400">
+                <i class="fab fa-bitcoin"></i>
+                <span class="nav-text">Crypto</span>
+            </a>
+            <a href="#" onclick="switchMarketTab(this, 'US Market')" class="nav-item text-gray-400">
+                <i class="fas fa-flag-usa"></i>
+                <span class="nav-text">US Market</span>
+            </a>
+            <div class="border-t border-[#27272a] my-2"></div>
+            <a href="#" onclick="switchMarketTab(this, 'Calendar')" class="nav-item text-gray-400">
+                <i class="fas fa-calendar"></i>
+                <span class="nav-text">Calendar</span>
+            </a>
+            <a href="#" onclick="switchMarketTab(this, 'Dividend')" class="nav-item text-gray-400">
+                <i class="fas fa-coins"></i>
+                <span class="nav-text">Dividend</span>
+            </a>
+        </nav>
+
+        <!-- Profile -->
+        <div class="p-4 border-t border-[#27272a]">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center">
+                    <i class="fas fa-user text-white text-xs"></i>
+                </div>
+                <div class="nav-text">
+                    <div class="text-xs font-bold text-white">Pro User</div>
+                    <div class="text-[10px] text-gray-500">Premium</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-hidden bg-black">
+        <!-- Top Bar -->
+        <header
+            class="h-16 border-b border-white/10 bg-[#1c1c1e]/50 backdrop-blur-xl flex items-center justify-between px-6 shrink-0">
+            <div class="flex items-center gap-4">
+                <button onclick="toggleSidebar()" class="lg:hidden text-gray-400 hover:text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <h1 id="main-header-title" class="text-xl font-bold text-white">Portfolio Summary</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button
+                    class="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                    <i class="fas fa-bell"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="flex-1 overflow-y-auto p-6 custom-scrollbar">
+            <!-- Include Partials -->
+            {% include 'partials/_summary.html' %}
+            {% include 'partials/_kr_market.html' %}
+            {% include 'partials/_crypto.html' %}
+            {% include 'partials/_us_market.html' %}
+
+            <!-- Crypto Content (Legacy Placeholder - Replaced by partial) -->
+            <!-- <div id="content-crypto" class="hidden">... -->
+
+            <!-- Crypto Content (Placeholder) -->
+            <div id="content-crypto" class="hidden">
+                <div class="bg-[#1c1c1e] rounded-2xl p-8 text-center">
+                    <i class="fab fa-bitcoin text-6xl text-amber-500 mb-4"></i>
+                    <h2 class="text-2xl font-bold text-white mb-2">Crypto Market</h2>
+                    <p class="text-gray-400">Coming Soon...</p>
+                </div>
+            </div>
+
+            <!-- US Market Content (Placeholder) -->
+            <div id="content-us-market" class="hidden">
+                <div class="bg-[#1c1c1e] rounded-2xl p-8 text-center">
+                    <i class="fas fa-flag-usa text-6xl text-blue-500 mb-4"></i>
+                    <h2 class="text-2xl font-bold text-white mb-2">US Market</h2>
+                    <p class="text-gray-400">Coming Soon...</p>
+                </div>
+            </div>
+
+            <!-- Calendar Content (Placeholder) -->
+            <div id="content-economic-calendar" class="hidden">
+                <div class="bg-[#1c1c1e] rounded-2xl p-8 text-center">
+                    <i class="fas fa-calendar text-6xl text-emerald-500 mb-4"></i>
+                    <h2 class="text-2xl font-bold text-white mb-2">Economic Calendar</h2>
+                    <p class="text-gray-400">Coming Soon...</p>
+                </div>
+            </div>
+
+            <!-- Dividend Content (Placeholder) -->
+            <div id="content-dividend" class="hidden">
+                <div class="bg-[#1c1c1e] rounded-2xl p-8 text-center">
+                    <i class="fas fa-coins text-6xl text-yellow-500 mb-4"></i>
+                    <h2 class="text-2xl font-bold text-white mb-2">Dividend Optimizer</h2>
+                    <p class="text-gray-400">Coming Soon...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        // ========== Global Variables ==========
+        let krAiData = null;
+        let currentKrChartPick = null;
+        let krChart = null;
+        let krCandleSeries = null;
+        let krChartPeriod = '1y';
+
+        // ========== Navigation ==========
+        function switchMarketTab(element, tabName) {
+            const contentSections = [
+                'content-summary', 'content-kr-market', 'content-crypto',
+                'content-us-market', 'content-economic-calendar', 'content-dividend'
+            ];
+
+            contentSections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
+
+            let contentId = '';
+            if (tabName.includes('Summary')) contentId = 'content-summary';
+            else if (tabName.includes('KR')) contentId = 'content-kr-market';
+            else if (tabName.includes('Crypto')) contentId = 'content-crypto';
+            else if (tabName.includes('US')) contentId = 'content-us-market';
+            else if (tabName.includes('Calendar')) contentId = 'content-economic-calendar';
+            else if (tabName.includes('Dividend')) contentId = 'content-dividend';
+
+            const targetEl = document.getElementById(contentId);
+            if (targetEl) targetEl.classList.remove('hidden');
+
+            document.getElementById('main-header-title').textContent = tabName;
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('bg-white/10', 'text-white', 'active');
+                item.classList.add('text-gray-400');
+            });
+
+            if (element) {
+                element.classList.add('bg-white/10', 'text-white', 'active');
+                element.classList.remove('text-gray-400');
+            }
+
+            if (tabName.includes('KR')) {
+                loadKrAiAnalysis();
+                loadMacroIndicators();
+                loadSectorData();
+                startAutoRefresh();  // Start continuous updates
+            } else {
+                stopAutoRefresh();  // Stop when leaving KR tab
+                if (tabName.includes('Summary')) {
+                    loadSummaryData();
+                }
+            }
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('main-sidebar');
+            const brandText = document.getElementById('brand-text');
+            const navTexts = document.querySelectorAll('.nav-text');
+
+            sidebar.classList.toggle('w-64');
+            sidebar.classList.toggle('w-16');
+
+            if (sidebar.classList.contains('w-16')) {
+                if (brandText) brandText.classList.add('hidden');
+                navTexts.forEach(el => el.classList.add('hidden'));
+            } else {
+                if (brandText) brandText.classList.remove('hidden');
+                navTexts.forEach(el => el.classList.remove('hidden'));
+            }
+        }
+
+
+        // ========== Macro Economic Indicators ==========
+        let macroRefreshInterval = null;
+        let sectorRefreshInterval = null;
+
+        async function loadMacroIndicators() {
+            const statusEl = document.getElementById('macro-update-status');
+            if (statusEl) statusEl.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> 갱신중...';
+
+            try {
+                const res = await fetch('/api/kr/macro-indicators');
+                const data = await res.json();
+
+                if (data.error) {
+                    console.error('Macro indicators error:', data.error);
+                    if (statusEl) statusEl.innerHTML = '<i class="fas fa-exclamation-triangle text-amber-500"></i> 오류';
+                    return;
+                }
+
+                // Exchange Rate
+                const fx = data.exchange_rate || {};
+                document.getElementById('macro-fx-rate').textContent = fx.rate ? fx.rate.toLocaleString() : '--';
+                const fxChangeEl = document.getElementById('macro-fx-change');
+                if (fx.change_pct) {
+                    const sign = fx.change_pct >= 0 ? '+' : '';
+                    fxChangeEl.textContent = `${sign}${fx.change_pct.toFixed(2)}%`;
+                    fxChangeEl.className = `text-sm font-bold ${fx.change_pct >= 0 ? 'text-rose-400' : 'text-emerald-400'}`;
+                }
+                const fxRiskEl = document.getElementById('macro-fx-risk');
+                const riskColors = {
+                    'critical': 'bg-rose-600 text-white',
+                    'warning': 'bg-amber-500 text-white',
+                    'elevated': 'bg-yellow-600 text-white',
+                    'normal': 'bg-emerald-600 text-white'
+                };
+                const riskLabels = {
+                    'critical': '위험',
+                    'warning': '경고',
+                    'elevated': '주의',
+                    'normal': '정상'
+                };
+                fxRiskEl.className = `px-2 py-0.5 rounded text-[10px] font-bold ${riskColors[fx.risk_level] || 'bg-gray-700 text-gray-300'}`;
+                fxRiskEl.textContent = riskLabels[fx.risk_level] || fx.risk_level;
+
+                // Interest Rate Spread
+                const ir = data.interest_spread || {};
+                document.getElementById('macro-spread-bp').textContent = ir.spread_bp ? Math.round(ir.spread_bp) : '--';
+                document.getElementById('macro-kr-rate').textContent = ir.kr_rate ? `${ir.kr_rate}%` : '--%';
+                document.getElementById('macro-us-rate').textContent = ir.us_rate ? `${ir.us_rate}%` : '--%';
+                const capitalRiskEl = document.getElementById('macro-capital-risk');
+                const capitalLabels = {
+                    'high': '자본 유출 위험: 높음 ⚠️',
+                    'elevated': '자본 유출 위험: 주의',
+                    'moderate': '자본 유출 위험: 보통',
+                    'low': '자본 유출 위험: 낮음'
+                };
+                capitalRiskEl.textContent = capitalLabels[ir.capital_risk] || `자본 유출 위험: ${ir.capital_risk}`;
+
+                // FX Reserves
+                const res_data = data.fx_reserves || {};
+                document.getElementById('macro-reserves').textContent = res_data.current_reserves ? res_data.current_reserves.toLocaleString() : '--';
+                const resChangeEl = document.getElementById('macro-reserves-change');
+                if (res_data.change !== undefined) {
+                    const sign = res_data.change >= 0 ? '+' : '';
+                    resChangeEl.textContent = `${sign}${res_data.change}억$`;
+                    resChangeEl.className = `text-sm font-bold ${res_data.change >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
+                }
+                document.getElementById('macro-next-announce').textContent = res_data.next_announcement || '---';
+
+                // Crisis Score
+                const crisis = data.crisis || {};
+                document.getElementById('macro-crisis-score').textContent = crisis.crisis_score !== undefined ? crisis.crisis_score : '--';
+                const crisisRing = document.getElementById('macro-crisis-ring');
+                if (crisisRing && crisis.crisis_score !== undefined) {
+                    const circumference = 176; // 2 * PI * 28
+                    const offset = circumference - (crisis.crisis_score / 100) * circumference;
+                    crisisRing.style.strokeDashoffset = offset;
+                    // Color based on level
+                    const crisisColors = {
+                        'critical': 'text-rose-500',
+                        'warning': 'text-amber-500',
+                        'elevated': 'text-yellow-500',
+                        'normal': 'text-emerald-500'
+                    };
+                    crisisRing.className = `${crisisColors[crisis.crisis_level] || 'text-rose-500'} transition-all duration-1000`;
+                }
+                const levelLabels = {
+                    'critical': '🔴 위험',
+                    'warning': '🟠 경고',
+                    'elevated': '🟡 주의',
+                    'normal': '🟢 안정'
+                };
+                document.getElementById('macro-crisis-level').textContent = levelLabels[crisis.crisis_level] || crisis.crisis_level;
+                document.getElementById('macro-crisis-msg').textContent = crisis.message || '';
+
+                // Update timestamp
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                if (statusEl) statusEl.innerHTML = `<i class="fas fa-check-circle text-emerald-500"></i> ${timeStr}`;
+
+            } catch (e) {
+                console.error('Macro indicators load error:', e);
+                if (statusEl) statusEl.innerHTML = '<i class="fas fa-exclamation-triangle text-rose-500"></i> 오류';
+            }
+        }
+
+        function startAutoRefresh() {
+            // Clear existing intervals
+            if (macroRefreshInterval) clearInterval(macroRefreshInterval);
+            if (sectorRefreshInterval) clearInterval(sectorRefreshInterval);
+
+            // Macro indicators: refresh every 60 seconds
+            macroRefreshInterval = setInterval(() => {
+                loadMacroIndicators();
+            }, 60000);
+
+            // Sector data: refresh every 2 minutes
+            sectorRefreshInterval = setInterval(() => {
+                loadSectorData();
+            }, 120000);
+
+            console.log('🔄 Auto-refresh started (Macro: 60s, Sectors: 120s)');
+        }
+
+        function stopAutoRefresh() {
+            if (macroRefreshInterval) {
+                clearInterval(macroRefreshInterval);
+                macroRefreshInterval = null;
+            }
+            if (sectorRefreshInterval) {
+                clearInterval(sectorRefreshInterval);
+                sectorRefreshInterval = null;
+            }
+            console.log('⏹️ Auto-refresh stopped');
+        }
+
+        async function loadSectorData() {
+            try {
+                const res = await fetch('/api/kr/sector-performance');
+                const data = await res.json();
+
+                if (data.error || !data.sectors) return;
+
+                const sectorCards = document.querySelectorAll('#kr-sector-grid .sector-card');
+                data.sectors.forEach((sector, idx) => {
+                    if (sectorCards[idx]) {
+                        const changeEl = sectorCards[idx].querySelector('.sector-change');
+                        if (changeEl && sector.change_pct !== undefined) {
+                            const sign = sector.change_pct >= 0 ? '+' : '';
+                            changeEl.textContent = `${sign}${sector.change_pct.toFixed(2)}%`;
+                            changeEl.className = `text-sm font-bold ${sector.change_pct >= 0 ? 'text-emerald-400' : 'text-rose-400'} sector-change`;
+                        }
+                        const volEl = sectorCards[idx].querySelector('.sector-volume');
+                        if (volEl && sector.volume) {
+                            volEl.textContent = `${(sector.volume / 1000000).toFixed(1)}M`;
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error('Sector data load error:', e);
+            }
+        }
+
+        // ========== KR Market Functions ==========
+        async function loadKrAiAnalysis(refresh = false) {
+            const tableBody = document.getElementById('kr-dashboard-signal-list');
+            const countEl = document.getElementById('kr-dash-count');
+            const lastUpdatedEl = document.getElementById('kr-dash-last-updated');
+            const refreshIcon = document.getElementById('kr-dash-refresh-icon');
+
+            if (refreshIcon) refreshIcon.classList.add('animate-spin');
+
+            try {
+                // Add loading state
+                if (refresh) {
+                    tableBody.innerHTML = `<tr><td colspan="11" class="p-10 text-center text-rose-400"><i class="fas fa-spinner fa-spin mr-2"></i> 최신 데이터 동기화 중...<br><span class="text-xs text-gray-500 mt-2">약 5-10초 소요될 수 있습니다</span></td></tr>`;
+                }
+
+                const url = refresh ? '/api/kr/ai-analysis?refresh=true' : '/api/kr/ai-analysis';
+                const res = await fetch(url);
+                const data = await res.json();
+
+                if (data.error) {
+                    tableBody.innerHTML = `<tr><td colspan="11" class="p-6 text-center text-red-400">${data.error}</td></tr>`;
+                    return;
+                }
+
+                window.krAiData = data;
+                const signals = data.signals || [];
+
+                if (countEl) countEl.textContent = signals.length;
+
+                // Korean Date Format
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+                if (lastUpdatedEl) lastUpdatedEl.textContent = timeString;
+
+                if (signals.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="11" class="p-6 text-center text-gray-500">분석된 시그널이 없습니다. 장 마감(15:30) 후 시도해주세요.</td></tr>`;
+                    return;
+                }
+
+                if (data.market_indices) {
+                    updateMarketIndices(data.market_indices);
+                }
+
+                // Initial Render (respecting current filter)
+                filterKrTheme(currentThemeFilter || 'ALL');
+
+            } catch (e) {
+                console.error('Failed to load KR AI analysis:', e);
+                if (tableBody) tableBody.innerHTML = `<tr><td colspan="11" class="p-8 text-center text-rose-500">데이터 로드 실패: ${e.message}</td></tr>`;
+            }
+        }
+
+        // Theme Filter Logic
+        let currentThemeFilter = 'ALL';
+
+        function filterKrTheme(theme) {
+            currentThemeFilter = theme;
+            try {
+
+                // Update Tab Styles
+                const tabs = ['all', 'vcp', 'defense', 'semi', 'power', 'ship', 'ai-infra', 'fx'];
+                tabs.forEach(t => {
+                    const btn = document.getElementById(`tab-theme-${t}`);
+                    if (!btn) return;
+
+                    // Reset common styles
+                    if (t === 'all') {
+                        btn.className = `px-3 py-1 text-[11px] font-bold rounded-md transition-all whitespace-nowrap ${theme === 'ALL' ? 'bg-white text-black' : 'bg-white/10 text-white hover:bg-white/20'}`;
+                    } else if (t === 'vcp') {
+                        btn.className = `px-3 py-1 text-[11px] font-bold rounded-md transition-all flex items-center gap-1 whitespace-nowrap ${theme === 'VCP' ? 'text-white bg-purple-500/20 ring-1 ring-purple-500/50' : 'text-gray-400 hover:text-purple-400 hover:bg-white/5'}`;
+                    } else {
+                        const colorMap = {
+                            'defense': { active: 'text-emerald-400 bg-emerald-500/20 ring-1 ring-emerald-500/50', inactive: 'text-gray-400 hover:text-emerald-400 hover:bg-white/5' },
+                            'semi': { active: 'text-cyan-400 bg-cyan-500/20 ring-1 ring-cyan-500/50', inactive: 'text-gray-400 hover:text-cyan-400 hover:bg-white/5' },
+                            'power': { active: 'text-amber-400 bg-amber-500/20 ring-1 ring-amber-500/50', inactive: 'text-gray-400 hover:text-amber-400 hover:bg-white/5' },
+                            'ship': { active: 'text-blue-400 bg-blue-500/20 ring-1 ring-blue-500/50', inactive: 'text-gray-400 hover:text-blue-400 hover:bg-white/5' },
+                            'ai-infra': { active: 'text-rose-400 bg-rose-500/20 ring-1 ring-rose-500/50', inactive: 'text-gray-400 hover:text-rose-400 hover:bg-white/5' },
+                            'fx': { active: 'text-purple-400 bg-purple-500/20 ring-1 ring-purple-500/50', inactive: 'text-gray-400 hover:text-purple-400 hover:bg-white/5' }
+                        };
+
+                        const isSelected = (theme === '방산' && t === 'defense') ||
+                            (theme === '반도체' && t === 'semi') ||
+                            (theme === 'AI전력' && t === 'power') ||
+                            (theme === '조선' && t === 'ship') ||
+                            (theme === 'AI인프라' && t === 'ai-infra') ||
+                            (theme === '환율수혜' && t === 'fx');
+
+                        btn.className = `px-3 py-1 text-[11px] font-bold rounded-md transition-all flex items-center gap-1 whitespace-nowrap ${isSelected ? colorMap[t].active : colorMap[t].inactive}`;
+                    }
+                });
+
+                // Filter Data
+                if (!window.krAiData || !window.krAiData.signals) return;
+
+                const tableBody = document.getElementById('kr-dashboard-signal-list');
+                if (!tableBody) return;
+
+                let filteredSignals = window.krAiData.signals;
+                if (theme === 'VCP') {
+                    // Filter purely by VCP score and criteria, ignoring theme
+                    filteredSignals = filteredSignals.filter(s => (s.score >= 50 && s.contraction_ratio < 0.95)); // Basic VCP criteria
+                    // If empty, show all high score items
+                    if (filteredSignals.length === 0) filteredSignals = window.krAiData.signals.filter(s => s.score >= 50);
+                } else if (theme !== 'ALL') {
+                    filteredSignals = filteredSignals.filter(s => s.theme === theme);
+                }
+
+                // Render
+                if (filteredSignals.length === 0) {
+                    tableBody.innerHTML = `<tr><td colspan="11" class="p-16 text-center text-gray-500">
+                    <div class="flex flex-col items-center gap-2">
+                        <i class="fas fa-search text-2xl opacity-20"></i>
+                        <span>해당 카테고리(${theme})의 추천 시그널이 없습니다.</span>
+                    </div>
+                </td></tr>`;
+                    return;
+                }
+
+                tableBody.innerHTML = filteredSignals.map((sig, idx) => {
+                    const gpt = sig.gpt_recommendation || {};
+                    const gemini = sig.gemini_recommendation || {};
+                    const returnPct = sig.return_pct || 0;
+
+                    // Format Supply (Foreign/Inst)
+                    const formatSupply = (val) => {
+                        if (!val) return '-';
+                        const absVal = Math.abs(val);
+                        const sign = val > 0 ? '+' : ''; // In KR market, showing + for net buy is helpful
+                        const color = val > 0 ? 'text-rose-400' : 'text-blue-400'; // KR style: Buy=Red, Sell=Blue
+                        if (absVal >= 1000000) return `<span class="${color}">${sign}${(absVal / 1000000).toFixed(1)}M</span>`;
+                        if (absVal >= 1000) return `<span class="${color}">${sign}${(absVal / 1000).toFixed(1)}K</span>`;
+                        return `<span class="${color}">${sign}${absVal}</span>`;
+                    };
+
+                    // Simple Badge logic
+                    let themeBadge = '';
+                    if (theme === 'ALL' || theme === 'VCP') {
+                        if (sig.theme) {
+                            const badgeColor = {
+                                '방산': 'text-emerald-400 border-emerald-500/30',
+                                '반도체': 'text-cyan-400 border-cyan-500/30',
+                                'AI전력': 'text-amber-400 border-amber-500/30',
+                                '조선': 'text-blue-400 border-blue-500/30',
+                                'AI인프라': 'text-rose-400 border-rose-500/30',
+                                '환율수혜': 'text-purple-400 border-purple-500/30'
+                            }[sig.theme] || 'text-gray-400 border-gray-500/30';
+                            themeBadge = `<span class="ml-2 px-1.5 py-0.5 rounded bg-white/5 text-[10px] border ${badgeColor}">${sig.theme}</span>`;
+                        }
+                    }
+
+                    return `
+                    <tr class="hover:bg-white/5 cursor-pointer transition-colors border-b border-white/5 last:border-0" onclick="loadKrStockChart(${JSON.stringify(sig).replace(/"/g, '&quot;')}, ${idx})" style="animation: fadeIn 0.3s ease ${idx * 0.05}s both;">
+                        <td class="p-3 text-center text-xs">
+                             <div class="font-bold flex flex-col gap-1 w-full items-center">
+                                <div class="w-full flex justify-center whitespace-nowrap">${actionBadge(gpt, true)}</div>
+                                <div class="w-full flex justify-center whitespace-nowrap">${actionBadge(gemini, true)}</div>
+                            </div>
+                        </td>
+                        <td class="p-3">
+                            <div class="font-bold text-white flex items-center flex-wrap gap-1">
+                                ${sig.name || sig.ticker}
+                                ${themeBadge}
+                            </div>
+                            <div class="text-xs text-gray-500 font-mono">${sig.ticker}</div>
+                        </td>
+                        <td class="p-3 text-center">
+                            <div class="flex flex-col items-center">
+                                <span class="text-[10px] text-gray-400">Layer 1</span>
+                                <div class="w-16 h-1 bg-gray-700 rounded overflow-hidden">
+                                     <div class="h-full bg-cyan-400" style="width: ${sig.nice_tech_score || (sig.score / 2) || 0}%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-cyan-300 mt-0.5">${sig.nice_tech_score || sig.score || '-'}</span>
+                            </div>
+                        </td>
+                        <td class="p-3 text-right text-xs font-mono">
+                            <div class="flex flex-col items-end gap-0.5">
+                                <div class="flex gap-1"><span class="text-gray-500 text-[9px]">외</span> ${formatSupply(sig.foreign_5d)}</div>
+                                <div class="flex gap-1"><span class="text-gray-500 text-[9px]">기</span> ${formatSupply(sig.inst_5d)}</div>
+                            </div>
+                        </td>
+                        <td class="p-3 text-center">
+                            <span class="px-2 py-0.5 rounded text-xs font-bold bg-white/10 text-white border border-white/20 shadow-inner">
+                                ${sig.score || 0}
+                            </span>
+                        </td>
+                        <td class="p-3 text-right font-mono ${returnPct >= 0 ? 'text-rose-400' : 'text-blue-400'}">
+                            ${returnPct >= 0 ? '+' : ''}${returnPct.toFixed(2)}%
+                        </td>
+                        <td class="p-3 text-right font-mono text-white">₩${(sig.current_price || 0).toLocaleString()}</td>
+                    </tr>
+                `;
+                }).join('');
+
+                // ... (Update Market Gate logic) ...
+                if (typeof updateMarketIndices === 'function' && window.krAiData.market_indices) {
+                    updateMarketIndices(window.krAiData.market_indices);
+                }
+
+                // ... (Date picker logic) ...
+
+            } catch (e) {
+                console.error('filterKrTheme error:', e);
+                console.error(e.stack);
+            }
+        }
+
+        // TradingView Widget (Replaced with Lightweight Charts) & Background Analysis
+        async function loadKrStockChart(sig, idx) {
+            currentKrChartPick = sig;
+            const ticker = sig.ticker;
+            const name = sig.name || ticker;
+
+            // Update Header UI
+            if (document.getElementById('kr-chart-title')) {
+                document.getElementById('kr-chart-title').innerHTML = `${name} <span class="text-gray-500 text-sm font-normal ml-2">${ticker}</span>`;
+            }
+
+            if (document.getElementById('kr-chart-price')) {
+                const price = sig.current_price || sig.entry_price || 0;
+                document.getElementById('kr-chart-price').textContent = price > 0 ? `₩${price.toLocaleString()}` : '--';
+            }
+
+            if (document.getElementById('kr-chart-change')) {
+                const ret = sig.return_pct || 0;
+                const changeEl = document.getElementById('kr-chart-change');
+                if (changeEl) {
+                    changeEl.textContent = `${ret > 0 ? '+' : ''}${ret}%`;
+                    changeEl.className = `text-xs px-2 py-0.5 rounded font-bold ${ret >= 0 ? 'bg-rose-500/20 text-rose-400' : 'bg-blue-500/20 text-blue-400'}`;
+                }
+            }
+
+            // Highlight selected row with new style
+            document.querySelectorAll('#kr-dashboard-signal-list tr').forEach((row, i) => {
+                const isSelected = i === idx;
+                if (isSelected) {
+                    row.classList.add('bg-white/10', 'border-l-2', 'border-rose-500');
+                    row.classList.remove('border-transparent');
+                } else {
+                    row.classList.remove('bg-white/10', 'border-l-2', 'border-rose-500');
+                    row.classList.add('border-transparent');
+                }
+            });
+
+            // Load AI summary
+            loadKrAISummary(sig);
+
+            // 1. Fetch Data FIRST (for both Chart and Analysis)
+            let candleData = [];
+            let volumeData = [];
+            let maData = [];
+
+            try {
+                const res = await fetch(`/api/kr/history/${ticker}?period=${krChartPeriod}`);
+                const historyData = await res.json();
+
+                if (!historyData || historyData.length < 10) {
+                    console.warn("Insufficient history data");
+                    const container = document.getElementById('tradingview_widget');
+                    if (container) container.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500">데이터 부족으로 차트를 표시할 수 없습니다.</div>';
+                    return;
+                }
+
+                // Convert to Lightweight Charts format
+                candleData = historyData.map(d => ({
+                    time: d.date,
+                    open: d.open,
+                    high: d.high,
+                    low: d.low,
+                    close: d.close
+                }));
+
+                // Calculate Color for Volume
+                volumeData = historyData.map(d => ({
+                    time: d.date,
+                    value: d.volume,
+                    color: d.close >= d.open ? 'rgba(239, 68, 68, 0.4)' : 'rgba(59, 130, 246, 0.4)'
+                }));
+
+                // Calculate SMA 20
+                for (let i = 0; i < historyData.length; i++) {
+                    if (i >= 19) {
+                        let sum = 0;
+                        for (let j = 0; j < 20; j++) sum += historyData[i - j].close;
+                        maData.push({ time: historyData[i].date, value: sum / 20 });
+                    }
+                }
+
+                // Run Analysis Algorithms (Elliott, etc.)
+                const waves = detectElliottWaves(candleData);
+                updateTechnicalAnalysisPanels(candleData, waves, sig);
+
+            } catch (e) {
+                console.error('Data load error:', e);
+                const container = document.getElementById('tradingview_widget');
+                if (container) container.innerHTML = `<div class="flex items-center justify-center h-full text-rose-500">데이터 로드 실패: ${e.message}</div>`;
+                return;
+            }
+
+            // 2. Render Lightweight Chart
+            const container = document.getElementById('tradingview_widget');
+            if (container) {
+                // Cleanup previous chart
+                container.innerHTML = '';
+
+                // Create Chart
+                const chart = LightweightCharts.createChart(container, {
+                    width: container.clientWidth,
+                    height: 600,
+                    layout: {
+                        backgroundColor: '#000000',
+                        textColor: '#9ca3af',
+                    },
+                    grid: {
+                        vertLines: { color: 'rgba(42, 46, 57, 0.1)' },
+                        horzLines: { color: 'rgba(42, 46, 57, 0.1)' },
+                    },
+                    rightPriceScale: {
+                        borderColor: 'rgba(197, 203, 206, 0.2)',
+                    },
+                    timeScale: {
+                        borderColor: 'rgba(197, 203, 206, 0.2)',
+                        timeVisible: true,
+                    },
+                    crosshair: {
+                        mode: LightweightCharts.CrosshairMode.Normal,
+                    },
+                });
+
+                // Candlestick Series
+                const candlestickSeries = chart.addCandlestickSeries({
+                    upColor: '#ef4444',
+                    downColor: '#3b82f6',
+                    borderUpColor: '#ef4444',
+                    borderDownColor: '#3b82f6',
+                    wickUpColor: '#ef4444',
+                    wickDownColor: '#3b82f6',
+                });
+                candlestickSeries.setData(candleData);
+
+                // Volume Series
+                const volumeSeries = chart.addHistogramSeries({
+                    priceFormat: { type: 'volume' },
+                    priceScaleId: '', // Overlay
+                    scaleMargins: {
+                        top: 0.8,
+                        bottom: 0,
+                    },
+                });
+                volumeSeries.setData(volumeData);
+
+                // MA 20 Line
+                const maSeries = chart.addLineSeries({
+                    color: '#fbbf24', // Amber-400
+                    lineWidth: 2,
+                    priceScaleId: 'right',
+                });
+                maSeries.setData(maData);
+
+                // Store instance
+                krChartInstance = chart;
+
+                // Responsive Resize
+                const resizeObserver = new ResizeObserver(entries => {
+                    if (entries.length === 0 || entries[0].target !== container) { return; }
+                    const newRect = entries[0].contentRect;
+                    chart.applyOptions({ width: newRect.width });
+                });
+                resizeObserver.observe(container);
+
+                // Fit Content
+                chart.timeScale().fitContent();
+            }
+        }
+
+        // Elliott Wave Detection Algorithm
+        function detectElliottWaves(candles) {
+            if (candles.length < 20) {
+                return { markers: [], trendLine: [], supportLine: [], currentWave: '분석 불가', trend: 'NEUTRAL' };
+            }
+
+            // Find swing highs and lows
+            const swings = [];
+            const lookback = 5;
+
+            for (let i = lookback; i < candles.length - lookback; i++) {
+                const current = candles[i];
+                let isHigh = true;
+                let isLow = true;
+
+                for (let j = i - lookback; j <= i + lookback; j++) {
+                    if (j === i) continue;
+                    if (candles[j].high >= current.high) isHigh = false;
+                    if (candles[j].low <= current.low) isLow = false;
+                }
+
+                if (isHigh) swings.push({ type: 'high', time: current.time, price: current.high, index: i });
+                if (isLow) swings.push({ type: 'low', time: current.time, price: current.low, index: i });
+            }
+
+            // Sort swings by time
+            swings.sort((a, b) => a.index - b.index);
+
+            // Create wave markers (simplified Elliott Wave - last 5-8 swings)
+            const markers = [];
+            const recentSwings = swings.slice(-8);
+            const waveLabels = ['1', '2', '3', '4', '5', 'A', 'B', 'C'];
+
+            recentSwings.forEach((swing, idx) => {
+                markers.push({
+                    time: swing.time,
+                    position: swing.type === 'high' ? 'aboveBar' : 'belowBar',
+                    color: swing.type === 'high' ? '#f59e0b' : '#10b981',
+                    shape: 'circle',
+                    text: waveLabels[idx] || '',
+                    size: 1,
+                });
+            });
+
+            // ========== PROPER ELLIOTT WAVE VALIDATION ==========
+            // Elliott Wave Rules:
+            // 1. Wave 3 is NEVER the shortest (usually the longest impulse)
+            // 2. Wave 2 cannot retrace more than 100% of Wave 1
+            // 3. Wave 4 cannot enter Wave 1's territory
+
+            let isValidElliottWave = false;
+            let waveAnalysis = { position: '스윙 포인트', next: '추세 관찰', action: '대기', phase: 'unknown' };
+
+            // Need at least 5 alternating swings to validate
+            if (recentSwings.length >= 5) {
+                // Extract wave points (assuming impulse wave up: low -> high -> low -> high -> low -> high)
+                // Or impulse wave down: high -> low -> high -> low -> high -> low
+                const wave1Start = recentSwings[0];
+                const wave1End = recentSwings[1];
+                const wave2End = recentSwings[2];
+                const wave3End = recentSwings[3];
+                const wave4End = recentSwings[4];
+                const wave5End = recentSwings.length > 5 ? recentSwings[5] : null;
+
+                // Calculate wave lengths
+                const wave1Length = Math.abs(wave1End.price - wave1Start.price);
+                const wave2Length = Math.abs(wave2End.price - wave1End.price);
+                const wave3Length = Math.abs(wave3End.price - wave2End.price);
+                const wave4Length = wave5End ? Math.abs(wave4End.price - wave3End.price) : 0;
+                const wave5Length = wave5End ? Math.abs(wave5End.price - wave4End.price) : 0;
+
+                // Determine if bullish or bearish impulse
+                const isBullish = wave1End.price > wave1Start.price;
+
+                // Rule 1: Wave 3 must NOT be the shortest of 1, 3, 5
+                const rule1Pass = wave5End ?
+                    (wave3Length >= wave1Length || wave3Length >= wave5Length) :
+                    (wave3Length >= wave1Length);
+
+                // Rule 2: Wave 2 cannot retrace more than 100% of Wave 1
+                const rule2Pass = wave2Length < wave1Length;
+
+                // Rule 3: Wave 4 cannot enter Wave 1 territory
+                let rule3Pass = true;
+                if (wave5End && isBullish) {
+                    rule3Pass = wave4End.price > wave1End.price;
+                } else if (wave5End && !isBullish) {
+                    rule3Pass = wave4End.price < wave1End.price;
+                }
+
+                isValidElliottWave = rule1Pass && rule2Pass && rule3Pass;
+
+                // Determine current wave position and next expected move
+                const lastSwingType = recentSwings[recentSwings.length - 1].type;
+                const swingCount = recentSwings.length;
+
+                if (isValidElliottWave) {
+                    if (swingCount === 5) {
+                        // Just completed wave 4, expecting wave 5
+                        waveAnalysis = {
+                            position: isBullish ? '4파 조정 완료' : '4파 반등 완료',
+                            next: isBullish ? '5파 상승 예상' : '5파 하락 예상',
+                            action: isBullish ? '매수 대기' : '매도 대기',
+                            phase: 'wave4_complete'
+                        };
+                    } else if (swingCount >= 6) {
+                        // Wave 5 complete or in correction
+                        waveAnalysis = {
+                            position: '5파 완료 (ABC 조정 진입)',
+                            next: isBullish ? 'A파 하락 진행' : 'A파 반등 진행',
+                            action: '추세 전환 주의',
+                            phase: 'correction'
+                        };
+                    } else if (swingCount === 3) {
+                        // In wave 3 (potentially)
+                        waveAnalysis = {
+                            position: isBullish ? '3파 상승 중' : '3파 하락 중',
+                            next: '3파 연장 가능성',
+                            action: isBullish ? '추격 매수 주의' : '추격 매도 주의',
+                            phase: 'wave3'
+                        };
+                    } else if (swingCount === 4) {
+                        // Wave 3 complete, wave 4 in progress
+                        waveAnalysis = {
+                            position: isBullish ? '4파 조정 진행' : '4파 반등 진행',
+                            next: isBullish ? '조정 저점 확인 필요' : '반등 고점 확인 필요',
+                            action: '관망',
+                            phase: 'wave4'
+                        };
+                    }
+                } else {
+                    // Rules not satisfied - be honest
+                    waveAnalysis = {
+                        position: '파동 규칙 불충족',
+                        next: '횡보 또는 변동',
+                        action: '추세 재확인',
+                        phase: 'invalid'
+                    };
+                }
+            }
+
+            // Calculate trend
+            const recent = candles.slice(-20);
+            const firstClose = recent[0].close;
+            const lastClose = recent[recent.length - 1].close;
+            const trend = lastClose > firstClose ? 'UP' : 'DOWN';
+            const trendPct = ((lastClose - firstClose) / firstClose * 100).toFixed(1);
+
+            // Create trend line from recent highs
+            const highSwings = swings.filter(s => s.type === 'high').slice(-3);
+            const trendLine = highSwings.map(s => ({ time: s.time, value: s.price }));
+
+            // Create support line from recent lows
+            const lowSwings = swings.filter(s => s.type === 'low').slice(-3);
+            const supportLine = lowSwings.map(s => ({ time: s.time, value: s.price }));
+
+            return {
+                markers,
+                trendLine,
+                supportLine,
+                currentWave: waveAnalysis.position,
+                trend,
+                trendPct,
+                nextMove: waveAnalysis.next,
+                action: waveAnalysis.action,
+                isValidWave: isValidElliottWave,
+                phase: waveAnalysis.phase
+            };
+        }
+
+        // ========== 기술적 파동 분석 패널 업데이트 ==========
+        function updateTechnicalAnalysisPanels(candles, waves, sig) {
+            if (!candles || candles.length < 10) return;
+
+            // 가격 데이터 계산
+            const prices = candles.map(c => c.close);
+            const highs = candles.map(c => c.high);
+            const lows = candles.map(c => c.low);
+            const currentPrice = prices[prices.length - 1];
+            const high52 = Math.max(...highs);
+            const low52 = Math.min(...lows);
+
+            // === Panel 1: Elliott Wave 업데이트 ===
+            const elliottTitle = document.getElementById('kr-elliott-title');
+            const elliottDesc = document.getElementById('kr-elliott-desc');
+            const waveButtons = document.getElementById('kr-wave-buttons');
+
+            if (elliottTitle) {
+                elliottTitle.textContent = waves.currentWave || 'Wave 분석 중';
+            }
+            if (elliottDesc) {
+                const phaseDescriptions = {
+                    'wave3': '5파 상승 중 3파 진행\n목표: 3파 정점 후 4파 조정',
+                    'wave4': '상승 파동 중 4파 조정\n목표: 4파 조정 후 5파 상승',
+                    'wave4_complete': '4파 조정 완료\n목표: 5파로 신고가 도전',
+                    'correction': '임펄스 완료, ABC 조정 진입\n⚠️ 추세 전환 가능성',
+                    'invalid': '파동 규칙 불충족\n추세 재확인 필요'
+                };
+                elliottDesc.innerHTML = phaseDescriptions[waves.phase] || '분석 대기 중...';
+            }
+
+            // Wave buttons 활성화 상태 업데이트
+            if (waveButtons) {
+                const currentWaveNum = waves.phase === 'wave3' ? 3 : waves.phase === 'wave4' ? 4 : waves.phase === 'wave4_complete' ? 5 : 0;
+                waveButtons.querySelectorAll('button').forEach(btn => {
+                    const waveNum = parseInt(btn.dataset.wave);
+                    if (waveNum === currentWaveNum) {
+                        btn.className = 'w-7 h-7 rounded bg-purple-600 text-white text-xs font-bold ring-2 ring-purple-400';
+                    } else if (waveNum < currentWaveNum) {
+                        btn.className = 'w-7 h-7 rounded bg-purple-800 text-purple-300 text-xs font-bold';
+                    } else {
+                        btn.className = 'w-7 h-7 rounded bg-gray-700 text-gray-400 text-xs font-bold';
+                    }
+                });
+            }
+
+            // === Panel 2: Fibonacci Retracement 업데이트 ===
+            const fibLevels = {
+                0: low52,
+                23: low52 + (high52 - low52) * 0.236,
+                38: low52 + (high52 - low52) * 0.382,
+                50: low52 + (high52 - low52) * 0.5,
+                61: low52 + (high52 - low52) * 0.618,
+                100: high52
+            };
+
+            // 현재가 기준 가장 가까운 피보나치 레벨 찾기
+            let closestLevel = '50.0%';
+            let minDiff = Infinity;
+            Object.entries(fibLevels).forEach(([level, price]) => {
+                const diff = Math.abs(currentPrice - price);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestLevel = level === '0' ? '0.0%' : level === '100' ? '100%' : `${level}%`;
+                }
+            });
+
+            const fibTitle = document.getElementById('kr-fib-title');
+            if (fibTitle) {
+                fibTitle.textContent = `${closestLevel} 지지 테스트`;
+            }
+
+            // Fibonacci 레벨 가격 업데이트
+            const formatPrice = (p) => `₩${Math.round(p).toLocaleString()}`;
+            if (document.getElementById('kr-fib-0')) document.getElementById('kr-fib-0').textContent = formatPrice(fibLevels[0]);
+            if (document.getElementById('kr-fib-23')) document.getElementById('kr-fib-23').textContent = formatPrice(fibLevels[23]);
+            if (document.getElementById('kr-fib-38')) document.getElementById('kr-fib-38').textContent = formatPrice(fibLevels[38]);
+            if (document.getElementById('kr-fib-50')) document.getElementById('kr-fib-50').textContent = formatPrice(fibLevels[50]);
+            if (document.getElementById('kr-fib-61')) document.getElementById('kr-fib-61').textContent = formatPrice(fibLevels[61]);
+            if (document.getElementById('kr-fib-100')) document.getElementById('kr-fib-100').textContent = formatPrice(fibLevels[100]);
+
+            // === Panel 3: 추세선 분석 업데이트 ===
+            const trendTitle = document.getElementById('kr-trend-title');
+            const trendResist = document.getElementById('kr-trend-resist');
+            const trendCurrent = document.getElementById('kr-trend-current');
+            const trendSupport = document.getElementById('kr-trend-support');
+            const trendPct = document.getElementById('kr-trend-pct');
+            const trendBar = document.getElementById('kr-trend-bar');
+
+            // 저항/지지 계산 (최근 고점/저점)
+            const recent20 = candles.slice(-20);
+            const resistPrice = Math.max(...recent20.map(c => c.high));
+            const supportPrice = Math.min(...recent20.map(c => c.low));
+
+            // 추세 강도 계산 (0-100%)
+            const range = resistPrice - supportPrice;
+            const positionInRange = ((currentPrice - supportPrice) / range) * 100;
+            const trendStrength = Math.min(100, Math.max(0, positionInRange));
+
+            if (trendTitle) {
+                trendTitle.textContent = waves.trend === 'UP' ? '상승 추세 유지' : '하락 추세 진행';
+                trendTitle.className = `text-sm font-bold mb-3 ${waves.trend === 'UP' ? 'text-emerald-400' : 'text-rose-400'}`;
+            }
+            if (trendResist) trendResist.textContent = formatPrice(resistPrice);
+            if (trendCurrent) trendCurrent.textContent = formatPrice(currentPrice);
+            if (trendSupport) trendSupport.textContent = formatPrice(supportPrice);
+            if (trendPct) trendPct.textContent = `${Math.round(trendStrength)}%`;
+            if (trendBar) trendBar.style.width = `${trendStrength}%`;
+        }
+
+        function changeKrChartPeriod(period) {
+            krChartPeriod = period;
+
+            document.querySelectorAll('#kr-chart-period-btns button').forEach(btn => {
+                if (btn.dataset.period === period) {
+                    btn.classList.add('bg-rose-600', 'text-white');
+                    btn.classList.remove('text-gray-400');
+                } else {
+                    btn.classList.remove('bg-rose-600', 'text-white');
+                    btn.classList.add('text-gray-400');
+                }
+            });
+
+            if (currentKrChartPick) {
+                loadKrStockChart(currentKrChartPick, 0);
+            }
+        }
+
+        function loadKrAISummary(sig) {
+            const summaryEl = document.getElementById('kr-ai-summary');
+            if (!summaryEl) return;
+
+            const gpt = sig.gpt_recommendation || {};
+            const gemini = sig.gemini_recommendation || {};
+            const news = sig.news || [];
+
+            // Update AI Insight Card
+            summaryEl.innerHTML = `
+                <div class="space-y-4">
+                    <div class="bg-black/30 rounded-lg p-3 border border-green-500/20 relative overflow-hidden group hover:border-green-500/40 transition-all">
+                        <div class="absolute -right-2 -top-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-robot text-6xl text-green-500"></i>
+                        </div>
+                        <h4 class="text-sm font-bold text-green-400 mb-1 flex items-center justify-between">
+                            <span>GPT-5 Analysis</span>
+                            <span class="text-[10px] text-gray-500 bg-black/50 px-1.5 py-0.5 rounded">Trust Score: ${gpt.confidence || 0}%</span>
+                        </h4>
+                        <div class="text-xs mb-2">${actionBadge(gpt)}</div>
+                        <p class="text-xs text-gray-400 leading-relaxed">${gpt.reason || '분석 결과 대기 중...'}</p>
+                    </div>
+
+                    <div class="bg-black/30 rounded-lg p-3 border border-blue-500/20 relative overflow-hidden group hover:border-blue-500/40 transition-all">
+                        <div class="absolute -right-2 -top-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-gem text-6xl text-blue-500"></i>
+                        </div>
+                        <h4 class="text-sm font-bold text-blue-400 mb-1 flex items-center justify-between">
+                            <span>Gemini 3.0 Analysis</span>
+                            <span class="text-[10px] text-gray-500 bg-black/50 px-1.5 py-0.5 rounded">Trust Score: ${gemini.confidence || 0}%</span>
+                        </h4>
+                        <div class="text-xs mb-2">${actionBadge(gemini)}</div>
+                        <p class="text-xs text-gray-400 leading-relaxed">${gemini.reason || '분석 결과 대기 중...'}</p>
+                    </div>
+                </div>
+            `;
+
+            // Update Trading Plan Card
+            const currentPrice = sig.current_price || sig.entry_price || 0;
+            const entry = sig.entry_price || 0;
+            const sl = sig.stop_loss || Math.round(entry * 0.93) || 0;
+            const tp1 = sig.tp1 || Math.round(entry * 1.10) || 0;
+            const tp2 = sig.tp2 || Math.round(entry * 1.20) || 0;
+
+            if (document.getElementById('kr-plan-entry')) {
+                document.getElementById('kr-plan-entry').textContent = `₩${entry.toLocaleString()}`;
+                document.getElementById('kr-plan-entry').className = `text-sm font-mono font-bold ${currentPrice < entry ? 'text-rose-400' : 'text-emerald-400'}`;
+            }
+            if (document.getElementById('kr-plan-sl')) document.getElementById('kr-plan-sl').textContent = `₩${sl.toLocaleString()}`;
+            if (document.getElementById('kr-plan-tp1')) document.getElementById('kr-plan-tp1').textContent = `₩${tp1.toLocaleString()}`;
+            if (document.getElementById('kr-plan-tp2')) document.getElementById('kr-plan-tp2').textContent = `₩${tp2.toLocaleString()}`;
+
+            // Update NICE Layer Panel
+            updateNiceLayerPanel(sig.ticker);
+        }
+
+        async function updateNiceLayerPanel(ticker) {
+            try {
+                const res = await fetch(`/api/kr/nice-layer/${ticker}`);
+                const data = await res.json();
+
+                if (data.status === 'success' && data.layers) {
+                    const layers = data.layers;
+
+                    // Update L1 - Technical
+                    document.getElementById('kr-nice-l1').textContent = `${layers.L1_technical}/100`;
+                    document.getElementById('kr-nice-l1-bar').style.width = `${layers.L1_technical}%`;
+
+                    // Update L2 - Supply
+                    document.getElementById('kr-nice-l2').textContent = `${layers.L2_supply}/30`;
+                    document.getElementById('kr-nice-l2-bar').style.width = `${(layers.L2_supply / 30) * 100}%`;
+
+                    // Update L3 - Sentiment
+                    document.getElementById('kr-nice-l3').textContent = `${layers.L3_sentiment}/100`;
+                    document.getElementById('kr-nice-l3-bar').style.width = `${layers.L3_sentiment}%`;
+
+                    // Update L4 - Macro
+                    document.getElementById('kr-nice-l4').textContent = `${layers.L4_macro}/40`;
+                    document.getElementById('kr-nice-l4-bar').style.width = `${(layers.L4_macro / 40) * 100}%`;
+
+                    // Update L5 - Institutional
+                    document.getElementById('kr-nice-l5').textContent = `${layers.L5_institutional}/30`;
+                    document.getElementById('kr-nice-l5-bar').style.width = `${(layers.L5_institutional / 30) * 100}%`;
+
+                    // Update Total Score
+                    document.getElementById('kr-nice-total').textContent = `${data.total_score}/${data.max_total}`;
+                }
+            } catch (e) {
+                console.error('NICE Layer update error:', e);
+            }
+        }
+
+        async function updateMarketGate(market) {
+            try {
+                const res = await fetch(`/api/${market}/market-gate`);
+                const data = await res.json();
+
+                if (data.error) {
+                    console.log(`${market} gate error:`, data.error);
+                    return;
+                }
+
+                const score = data.gate_score || data.score || 50;
+                const status = data.status || data.gate || 'NEUTRAL';
+
+                if (market === 'kr') {
+                    const progressEl = document.getElementById('kr-gate-progress');
+                    const scoreEl = document.getElementById('kr-gate-score-val');
+                    const labelEl = document.getElementById('kr-gate-label');
+
+                    if (progressEl) {
+                        const offset = 364.4 - (364.4 * score / 100);
+                        progressEl.style.strokeDashoffset = offset;
+                    }
+
+                    if (scoreEl) scoreEl.textContent = score;
+
+                    if (labelEl) {
+                        let labelText = 'Neutral';
+                        let labelClass = 'text-yellow-400 border-yellow-500/30 bg-yellow-500/10';
+
+                        if (status === 'BULLISH') {
+                            labelText = 'Bullish';
+                            labelClass = 'text-green-400 border-green-500/30 bg-green-500/10';
+                        } else if (status === 'BEARISH') {
+                            labelText = 'Bearish';
+                            labelClass = 'text-red-400 border-red-500/30 bg-red-500/10';
+                        }
+
+                        labelEl.textContent = labelText;
+                        labelEl.className = `mt-4 px-4 py-1 rounded-full border text-xs font-bold ${labelClass}`;
+                    }
+                }
+
+            } catch (e) {
+                console.error(`${market} gate update failed:`, e);
+            }
+        }
+
+        async function loadKrHistoryDates() {
+            try {
+                const res = await fetch('/api/kr/ai-history-dates');
+                const data = await res.json();
+
+                if (data.dates && data.dates.length > 0) {
+                    const dropdown = document.getElementById('kr-signals-history-dropdown');
+                    if (dropdown) {
+                        dropdown.innerHTML = data.dates.map(date => `
+                            <button onclick="loadKrHistoryByDate('${date}')" 
+                                class="w-full text-left px-3 py-2 text-xs hover:bg-white/10 transition-colors text-gray-300">
+                                ${date}
+                            </button>
+                        `).join('');
+                    }
+                }
+            } catch (e) {
+                console.log('History dates load failed:', e);
+            }
+        }
+
+        function toggleKrHistoryDropdown() {
+            const dropdown = document.getElementById('kr-signals-history-dropdown');
+            if (dropdown) {
+                dropdown.classList.toggle('hidden');
+            }
+        }
+
+        async function loadKrHistoryByDate(date) {
+            toggleKrHistoryDropdown();
+            document.getElementById('kr-signals-selected-date').textContent = date;
+
+            // Load historical analysis
+            // Implementation similar to loadKrAiAnalysis but with date parameter
+            console.log('Loading history for date:', date);
+        }
+
+        function actionBadge(rec) {
+            if (!rec || !rec.action) return '<span class="text-gray-500 text-[10px]">-</span>';
+
+            const action = rec.action.toUpperCase();
+            let bgClass, textClass, icon, label;
+
+            if (action === 'BUY') {
+                bgClass = 'bg-green-500/20';
+                textClass = 'text-green-400';
+                icon = '▲';
+                label = '매수';
+            } else if (action === 'SELL') {
+                bgClass = 'bg-red-500/20';
+                textClass = 'text-red-400';
+                icon = '▼';
+                label = '매도';
+            } else {
+                bgClass = 'bg-yellow-500/20';
+                textClass = 'text-yellow-400';
+                icon = '■';
+                label = '관망';
+            }
+
+            const tooltip = rec.reason || '';
+            return `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold ${bgClass} ${textClass} border border-current/30 cursor-help" title="${tooltip}">${icon} ${label}</span>`;
+        }
+
+        function updateMarketIndices(indices) {
+            const container = document.getElementById('kr-market-indices-container');
+            if (!container) return;
+
+            const kospi = indices.kospi || { value: 0, change_pct: 0 };
+            const kosdaq = indices.kosdaq || { value: 0, change_pct: 0 };
+
+            container.innerHTML = `
+                <div class="p-4 rounded-2xl bg-[#1c1c1e] border border-white/10">
+                    <div class="text-xs text-gray-500 uppercase tracking-wider mb-1">KOSPI</div>
+                    <div class="text-2xl font-black text-white">${kospi.value.toFixed(2)}</div>
+                    <div class="text-xs font-mono ${kospi.change_pct >= 0 ? 'text-green-400' : 'text-red-400'}">
+                        ${kospi.change_pct >= 0 ? '+' : ''}${kospi.change_pct.toFixed(2)}%
+                    </div>
+                </div>
+                <div class="p-4 rounded-2xl bg-[#1c1c1e] border border-white/10">
+                    <div class="text-xs text-gray-500 uppercase tracking-wider mb-1">KOSDAQ</div>
+                    <div class="text-2xl font-black text-white">${kosdaq.value.toFixed(2)}</div>
+                    <div class="text-xs font-mono ${kosdaq.change_pct >= 0 ? 'text-green-400' : 'text-red-400'}">
+                        ${kosdaq.change_pct >= 0 ? '+' : ''}${kosdaq.change_pct.toFixed(2)}%
+                    </div>
+                </div>
+            `;
+        }
+
+        // ========== Summary Functions ==========
+        async function loadSummaryData() {
+            console.log('Loading summary data...');
+
+            // Load KR VCP cumulative return
+            try {
+                const krRes = await fetch('/api/kr/cumulative-return');
+                const krData = await krRes.json();
+
+                const krReturnEl = document.getElementById('summary-kr-return');
+                const krValueEl = document.getElementById('summary-kr-value');
+                const krStatusEl = document.getElementById('summary-kr-status');
+
+                if (!krData.error && krData.cumulative_return !== undefined) {
+                    const returnPct = krData.cumulative_return;
+                    if (krReturnEl) {
+                        krReturnEl.textContent = `${returnPct >= 0 ? '+' : ''}${returnPct.toFixed(1)}%`;
+                        krReturnEl.className = `text-5xl md:text-6xl font-black tracking-tighter mb-2 ${returnPct >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
+                    }
+                    if (krValueEl) {
+                        const init = 1000000;
+                        const current = init * (1 + returnPct / 100);
+                        krValueEl.textContent = `₩${init.toLocaleString()} → ₩${Math.round(current).toLocaleString()}`;
+                    }
+                    if (krStatusEl) {
+                        krStatusEl.textContent = `${krData.signal_count || 0}개 시그널`;
+                    }
+                } else {
+                    if (krReturnEl) krReturnEl.textContent = '0%';
+                    if (krStatusEl) krStatusEl.textContent = '데이터 없음';
+                }
+            } catch (e) {
+                console.error('KR summary load error:', e);
+                const krStatusEl = document.getElementById('summary-kr-status');
+                if (krStatusEl) krStatusEl.textContent = '로딩 실패';
+            }
+
+            // Load macro indicators for additional context
+            try {
+                const macroRes = await fetch('/api/kr/macro-indicators');
+                const macroData = await macroRes.json();
+
+                // Update US placeholder with exchange rate impact info
+                const usReturnEl = document.getElementById('summary-us-return');
+                const usValueEl = document.getElementById('summary-us-value');
+                const usStatusEl = document.getElementById('summary-us-status');
+
+                if (usReturnEl) usReturnEl.textContent = 'N/A';
+                if (usValueEl) usValueEl.textContent = 'US 데이터 미연동';
+                if (usStatusEl) usStatusEl.textContent = 'KR 전용';
+
+            } catch (e) {
+                console.error('Macro summary load error:', e);
+            }
+        }
+
+        // ========== Page Load ==========
+        document.addEventListener('DOMContentLoaded', function () {
+            const summaryNav = document.querySelector('.nav-item.active');
+            if (summaryNav) {
+                switchMarketTab(summaryNav, 'Portfolio Summary');
+            }
+        });
+
+        // Resize handler
+        window.addEventListener('resize', function () {
+            if (krChart) {
+                const container = document.getElementById('kr-stock-chart');
+                if (container) {
+                    krChart.resize(container.clientWidth, 300);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
