@@ -632,9 +632,60 @@ def analyze_single_stock_realtime(ticker: str, cached_signal: Dict = None) -> Di
     else:
         gpt_rec['source'] = 'GPT-4o'
     
+    
     # 4. 결과 종합
     signal['gpt_recommendation'] = gpt_rec
     signal['gemini_recommendation'] = gemini_res.get('recommendation', {})
     signal['news'] = grounding_news
     
     return signal
+
+
+def analyze_market_theme(theme_name: str) -> Dict:
+    """Analyze a specific market theme using Gemini"""
+    if not GOOGLE_API_KEY:
+        return {'analysis': 'API 키 없음', 'outlook': 'N/A'}
+
+    try:
+        from google import genai
+        client = genai.Client(api_key=GOOGLE_API_KEY)
+        model_id = 'gemini-2.5-pro'
+        
+        prompt = f"""당신은 한국 주식시장 전문 애널리스트입니다.
+현재 '{theme_name}' 테마의 시장 상황과 전망을 분석해주세요.
+
+## 요청사항
+1. 해당 테마가 주목받는 이유 (Key Driver)
+2. 최근 긍정/부정적 요인
+3. 단기 전망 (Outlook)
+
+## 응답 형식 (JSON)
+{{
+  "analysis": "핵심 분석 내용 (3문장 내외 요약)",
+  "outlook": "Positive/Neutral/Negative",
+  "key_stocks": ["관련 대장주 1", "관련 대장주 2"]
+}}"""
+
+        response = client.models.generate_content(
+            model=model_id,
+            contents=prompt,
+            config={'temperature': 0.3}
+        )
+        
+        result_text = response.text.strip()
+        if result_text.startswith('```'):
+            lines = result_text.split('\n')
+            result_text = '\n'.join(lines[1:-1] if lines[-1] == '```' else lines[1:])
+            
+        # Extract JSON
+        start = result_text.find('{')
+        end = result_text.rfind('}')
+        if start != -1 and end != -1:
+            result_text = result_text[start:end+1]
+            
+        import json
+        return json.loads(result_text)
+        
+    except Exception as e:
+        print(f"Theme analysis failed: {e}")
+        return {'analysis': '분석 실패', 'outlook': 'Unknown'}

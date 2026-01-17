@@ -149,3 +149,14 @@ export const fetchMacroIndicators = () => fetchJson<MacroIndicators>(`${API_BASE
 export const fetchSectorPerformance = () => fetchJson<SectorPerformance>(`${API_BASE}/sector-performance`);
 export const fetchStockHistory = (ticker: string) => fetchJson<StockHistory[]>(`${API_BASE}/history/${ticker}?period=1y`);
 export const fetchStockAnalysis = (ticker: string) => postJson<Signal>(`${API_BASE}/analyze-stock`, { ticker });
+
+export interface ThemeAnalysis {
+    themes: {
+        name: string;
+        analysis: string;
+        outlook: string;
+    }[];
+    updated_at: string;
+}
+
+export const fetchHotThemes = () => fetchJson<ThemeAnalysis>(`${API_BASE}/hot-themes`);

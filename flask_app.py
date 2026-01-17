@@ -1111,6 +1111,55 @@ def get_fx_reserves():
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/api/kr/hot-themes')
+def api_kr_hot_themes():
+    """Get AI analysis for hot themes (Defense, Chips, AI Power)"""
+    try:
+        cache_file = 'kr_market/data/cache/theme_analysis.json'
+        
+        # Check cache (VALID FOR 6 HOURS)
+        if os.path.exists(cache_file):
+            mod_time = datetime.fromtimestamp(os.path.getmtime(cache_file))
+            if datetime.now() - mod_time < timedelta(hours=6):
+                with open(cache_file, 'r', encoding='utf-8') as f:
+                    return jsonify(json.load(f))
+
+        # Generate new analysis
+        from kr_market.kr_ai_analyzer import analyze_market_theme
+        
+        targets = [
+            {'name': 'Defense (방산)', 'query': '국내 방산'},
+            {'name': 'Semiconductor (반도체)', 'query': '국내 반도체'},
+            {'name': 'AI / Power (AI전력)', 'query': '국내 전력설비 및 전선'}
+        ]
+        
+        results = []
+        for t in targets:
+            analysis = analyze_market_theme(t['query'])
+            results.append({
+                'name': t['name'],
+                'analysis': analysis.get('analysis', '분석 불가'),
+                'outlook': analysis.get('outlook', 'Neutral')
+            })
+            
+        final_data = {
+            'themes': results,
+            'updated_at': datetime.now().isoformat()
+        }
+        
+        # Save cache
+        os.makedirs(os.path.dirname(cache_file), exist_ok=True)
+        with open(cache_file, 'w', encoding='utf-8') as f:
+            json.dump(final_data, f, ensure_ascii=False, indent=2)
+            
+        return jsonify(final_data)
+        
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/api/kr/sector-performance')
 def get_sector_perf():
     """섹터별 성과"""
