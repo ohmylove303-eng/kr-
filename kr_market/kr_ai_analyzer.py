@@ -24,7 +24,8 @@ import yfinance as yf
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+# Validates both GOOGLE_API_KEY and GEMINI_API_KEY for user convenience
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY') or os.getenv('GEMINI_API_KEY')
 
 
 def fetch_market_indices() -> Dict:
@@ -494,8 +495,8 @@ from kr_market.gates import TechnicalGate_L2, FlowGate_L3
 # import FinanceDataReader as fdr (Removed, handled globally at top)
 from datetime import datetime, timedelta
 
-def analyze_single_stock_realtime(ticker: str) -> Dict:
-    """단일 종목 실시간 AI 분석 (On-Demand)"""
+def analyze_single_stock_realtime(ticker: str, cached_signal: Dict = None) -> Dict:
+    """단일 종목 실시간 AI 분석 (On-Demand) w/ Data Preservation"""
     from kr_market.theme_manager import ThemeManager
     
     # 1. 기본 정보 조회
@@ -508,17 +509,39 @@ def analyze_single_stock_realtime(ticker: str) -> Dict:
     name = stock_names.get(ticker, ticker)
     theme = ThemeManager.get_theme(ticker)
     
+    # [Data Preservation] Use cached data for heavy metrics (Foreign/Inst/Tech)
+    # yfinance cannot fetch accurate investor breakdown, causing score drops.
+    # So we prefer the cached high-quality data if available.
+    foreign_5d = 0
+    inst_5d = 0
+    nice_tech_score = 0
+    is_palantir = False
+    
+    if cached_signal:
+        foreign_5d = cached_signal.get('foreign_5d', 0)
+        inst_5d = cached_signal.get('inst_5d', 0)
+        nice_tech_score = cached_signal.get('nice_tech_score', 0)
+        if nice_tech_score == 0:
+             # Fallback to L1 if tech score missing
+             nice_tech_score = cached_signal.get('nice_layers', {}).get('L1_technical', 0)
+        is_palantir = cached_signal.get('is_palantir', False)
+        
+    
     # 2. 실시간 가격 및 재무 조회
     current_price = fetch_current_price(ticker)
     fundamentals = fetch_fundamentals(ticker, name)
     market_indices = fetch_market_indices()
     
     # 2.1 기술적/수급 데이터 계산 (Radar Chart용)
-    nice_tech_score = 0
-    is_palantir = False
-    is_palantir_mini = False
-    foreign_5d = 0
-    inst_5d = 0
+    # Only recalculate if we don't have cached data OR if FDR is available (full power)
+    should_recalc_tech = (nice_tech_score == 0) or FDR_AVAILABLE
+    
+    is_palantir_mini = False # Always recalc mini? Or preserve?
+    
+    if should_recalc_tech:
+        nice_tech_score = 0 # reset to calc
+    else:
+        print(f"ℹ️ Preserving existing Tech/Supply Score for {ticker} (Tech: {nice_tech_score})")
     
     try:
         # OHLCV (120일)

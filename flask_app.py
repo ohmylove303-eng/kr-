@@ -859,7 +859,21 @@ def api_kr_analyze_stock():
         print(f"🚀 On-Demand Analysis Triggered for {ticker}")
         
         from kr_market.kr_ai_analyzer import analyze_single_stock_realtime
-        result = analyze_single_stock_realtime(ticker)
+        
+        # [Preserve Data Logic] Load existing cached data to keep foreign/inst scores
+        cached_signal = None
+        try:
+            cache_file = 'kr_market/data/kr_ai_analysis.json'
+            if os.path.exists(cache_file):
+                with open(cache_file, 'r', encoding='utf-8') as f:
+                    cached_data = json.load(f)
+                    for s in cached_data.get('signals', []):
+                        if s.get('ticker') == ticker.zfill(6):
+                            cached_signal = s
+                            break
+        except: pass
+
+        result = analyze_single_stock_realtime(ticker, cached_signal)
         
         # Save or Log if needed? For now just return
         return jsonify(result)
