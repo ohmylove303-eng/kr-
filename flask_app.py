@@ -33,21 +33,31 @@ CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # ==================== BACKGROUND PRICE SCHEDULER ====================
 
-# [NEW] 실시간 데이터 - FinanceDataReader
-import FinanceDataReader as fdr
+# [NEW] 실시간 데이터 - FinanceDataReader (optional - not available on Python 3.13)
+try:
+    import FinanceDataReader as fdr
+    FDR_AVAILABLE = True
+except ImportError:
+    fdr = None
+    FDR_AVAILABLE = False
+    print("⚠️ FinanceDataReader 미설치 (검색/실시간 데이터 제한)")
+
 from datetime import timedelta
 
 # [NICE] Theme Manager for dynamic theme lookup
 from kr_market.theme_manager import ThemeManager
 
-print("⏳ KRX 종목 리스트 다운로드 중... (서버 시작 시 1회)")
-try:
-    KRX_STOCKS = fdr.StockListing('KRX')
-    if 'Code' in KRX_STOCKS.columns and 'Symbol' not in KRX_STOCKS.columns:
-        KRX_STOCKS['Symbol'] = KRX_STOCKS['Code']
-    print(f"✅ KRX 종목 리스트 로드 완료: {len(KRX_STOCKS)}개 종목")
-except Exception as e:
-    print(f"⚠️ KRX 종목 리스트 로드 실패 (검색 기능 제한됨): {e}")
+# KRX 종목 리스트 초기화
+KRX_STOCKS = pd.DataFrame()
+if FDR_AVAILABLE:
+    print("⏳ KRX 종목 리스트 다운로드 중... (서버 시작 시 1회)")
+    try:
+        KRX_STOCKS = fdr.StockListing('KRX')
+        if 'Code' in KRX_STOCKS.columns and 'Symbol' not in KRX_STOCKS.columns:
+            KRX_STOCKS['Symbol'] = KRX_STOCKS['Code']
+        print(f"✅ KRX 종목 리스트 로드 완료: {len(KRX_STOCKS)}개 종목")
+    except Exception as e:
+        print(f"⚠️ KRX 종목 리스트 로드 실패 (검색 기능 제한됨): {e}")
     KRX_STOCKS = pd.DataFrame()
 
 # [NEW] pykrx for supply data (foreign/institutional trading)
@@ -123,6 +133,9 @@ def search_stock(keyword):
 
 def get_real_stock_data(symbol):
     """실시간 주가 정보 (FDR 사용)"""
+    if not FDR_AVAILABLE:
+        return None  # FinanceDataReader not available
+        
     try:
         # 최근 5일 데이터 조회 (안전하게)
         end_date = datetime.now()
@@ -586,7 +599,7 @@ def get_kr_signals():
 def get_kr_history(ticker):
     """Get price history for a ticker (Direct list for Lightweight Charts)"""
     try:
-        # Fetch chart data using FDR
+        # Fetch chart data using FDR or yfinance fallback
         symbol = ticker
         
         # 기간 설정
@@ -600,7 +613,25 @@ def get_kr_history(ticker):
         end_date = datetime.now()
         start_date = end_date - timedelta(days=period_days)
         
-        df = fdr.DataReader(symbol, start_date, end_date)
+        df = pd.DataFrame()
+        
+        # Try FinanceDataReader first
+        if FDR_AVAILABLE:
+            try:
+                df = fdr.DataReader(symbol, start_date, end_date)
+            except Exception as fdr_err:
+                print(f"FDR fetch failed for {ticker}: {fdr_err}")
+        
+        # Fallback to yfinance if FDR failed or unavailable
+        if df.empty:
+            try:
+                yahoo_ticker = f"{symbol}.KS"
+                df = yf.download(yahoo_ticker, start=start_date, end=end_date, progress=False)
+                if df.empty:
+                    yahoo_ticker = f"{symbol}.KQ"  # Try KOSDAQ
+                    df = yf.download(yahoo_ticker, start=start_date, end=end_date, progress=False)
+            except Exception as yf_err:
+                print(f"YFinance fetch failed for {ticker}: {yf_err}")
         
         if df.empty:
             return jsonify([]), 200 # Return empty list instead of 404 for safer frontend handling
