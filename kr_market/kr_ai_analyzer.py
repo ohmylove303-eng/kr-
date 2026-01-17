@@ -5,7 +5,14 @@ KR VCP AI Analyzer
 GPT + Gemini를 활용한 VCP 종목 AI 분석
 Based on BLUEPRINT_04_BACKEND_AI_ANALYSIS.md
 """
-import FinanceDataReader as fdr
+# FinanceDataReader (Optional)
+try:
+    import FinanceDataReader as fdr
+    FDR_AVAILABLE = True
+except ImportError:
+    fdr = None
+    FDR_AVAILABLE = False
+
 import pandas as pd
 import os
 import json
@@ -27,39 +34,72 @@ def fetch_market_indices() -> Dict:
         'kosdaq': {'value': 0, 'change_pct': 0}
     }
     
+    end = datetime.now()
+    start = end - timedelta(days=5)
+
+    # 1. Try FDR first
+    if FDR_AVAILABLE:
+        try:
+            for code, key in [('KS11', 'kospi'), ('KQ11', 'kosdaq')]:
+                df = fdr.DataReader(code, start, end)
+                if not df.empty and len(df) >= 2:
+                    today = df.iloc[-1]['Close']
+                    prev = df.iloc[-2]['Close']
+                    change_pct = ((today - prev) / prev) * 100
+                    indices[key] = {
+                        'value': round(float(today), 2),
+                        'change_pct': round(change_pct, 2)
+                    }
+            return indices
+        except Exception as e:
+            print(f"FDR Market indices fetch error: {e}")
+    
+    # 2. Fallback to yfinance
     try:
-        # KS11 (KOSPI), KQ11 (KOSDAQ)
-        end = datetime.now()
-        start = end - timedelta(days=5)
-        
-        for code, key in [('KS11', 'kospi'), ('KQ11', 'kosdaq')]:
-            df = fdr.DataReader(code, start, end)
-            if not df.empty and len(df) >= 2:
-                today = df.iloc[-1]['Close']
-                prev = df.iloc[-2]['Close']
+        # KOSPI: ^KS11, KOSDAQ: ^KQ11
+        for code, key in [('^KS11', 'kospi'), ('^KQ11', 'kosdaq')]:
+            ticker = yf.Ticker(code)
+            hist = ticker.history(period="5d")
+            if not hist.empty and len(hist) >= 2:
+                today = hist.iloc[-1]['Close']
+                prev = hist.iloc[-2]['Close']
                 change_pct = ((today - prev) / prev) * 100
                 indices[key] = {
                     'value': round(float(today), 2),
                     'change_pct': round(change_pct, 2)
                 }
     except Exception as e:
-        print(f"Market indices fetch error: {e}")
+        print(f"YFinance Market indices fetch error: {e}")
     
     return indices
 
 
 def fetch_current_price(ticker: str) -> int:
-    """FDR를 통한 실시간 현재가 조회"""
+    """FDR/YF를 통한 실시간 현재가 조회"""
+    end = datetime.now()
+    start = end - timedelta(days=5)
+
+    # 1. Try FDR
+    if FDR_AVAILABLE:
+        try:
+            df = fdr.DataReader(ticker, start, end)
+            if not df.empty:
+                return int(df.iloc[-1]['Close'])
+        except Exception as e:
+            print(f"FDR Current price fetch error for {ticker}: {e}")
+
+    # 2. Fallback to YF
     try:
-        end = datetime.now()
-        start = end - timedelta(days=5)
-        df = fdr.DataReader(ticker, start, end)
-        if not df.empty:
-            return int(df.iloc[-1]['Close'])
-        return 0
+        # Try .KS then .KQ
+        for suffix in ['.KS', '.KQ']:
+            t = yf.Ticker(f"{ticker}{suffix}")
+            hist = t.history(period='1d')
+            if not hist.empty:
+                return int(hist.iloc[-1]['Close'])
     except Exception as e:
-        print(f"Current price fetch error for {ticker}: {e}")
-        return 0
+        print(f"YF Current price fetch error for {ticker}: {e}")
+        
+    return 0
 
 
 def fetch_fundamentals(ticker: str, name: str) -> Dict:
@@ -451,7 +491,7 @@ def generate_ai_recommendations(vcp_signals: List[Dict]) -> Dict:
 
 
 from kr_market.gates import TechnicalGate_L2, FlowGate_L3
-import FinanceDataReader as fdr
+# import FinanceDataReader as fdr (Removed, handled globally at top)
 from datetime import datetime, timedelta
 
 def analyze_single_stock_realtime(ticker: str) -> Dict:
@@ -484,7 +524,27 @@ def analyze_single_stock_realtime(ticker: str) -> Dict:
         # OHLCV (120일)
         end_dt = datetime.now()
         start_dt = end_dt - timedelta(days=200) # 넉넉하게
-        df = fdr.DataReader(ticker, start=start_dt.strftime('%Y-%m-%d'))
+        
+        df = pd.DataFrame()
+        
+        # 1. Try FDR
+        if FDR_AVAILABLE:
+            try:
+                df = fdr.DataReader(ticker, start=start_dt.strftime('%Y-%m-%d'))
+            except: pass
+            
+        # 2. Fallback YF
+        if df.empty:
+             for suffix in ['.KS', '.KQ']:
+                 try:
+                     df = yf.download(f"{ticker}{suffix}", start=start_dt, progress=False)
+                     if not df.empty:
+                         # YF returns columns like (Close, Ticker), need to flatten if MultiIndex
+                         if isinstance(df.columns, pd.MultiIndex):
+                             df.columns = df.columns.get_level_values(0)
+                         break
+                 except: pass
+        
         
         if not df.empty:
             # Technical Gate
