@@ -27,13 +27,14 @@ load_dotenv()
 
 app = Flask(__name__)
 
+# Enable CORS for frontend access
+from flask_cors import CORS
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 # ==================== BACKGROUND PRICE SCHEDULER ====================
 
 # [NEW] 실시간 데이터 - FinanceDataReader
-try:
-    import FinanceDataReader as fdr
-except ImportError:
-    fdr = None  # Not available on Render
+import FinanceDataReader as fdr
 from datetime import timedelta
 
 # [NICE] Theme Manager for dynamic theme lookup
