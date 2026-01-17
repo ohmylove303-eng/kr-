@@ -657,192 +657,83 @@ def get_kr_history(ticker):
 @app.route('/api/kr/ai-analysis')
 def kr_ai_analysis():
     """
-    Get AI recommendations (Top 10 VCP signals with GPT + Gemini analysis)
-    Supports caching with ?refresh=true to force regeneration
+    Get AI recommendations (Synced with Real-time Signals + Cached AI Text)
+    This ensures the Left Dashboard matches the Right Dashboard's ranking.
     """
     try:
-        from kr_market.kr_ai_analyzer import generate_ai_recommendations
+        # 1. Fetch Fresh Real-time Signals (Reuse logic from Signals API)
+        # This returns the current Top 20 based on Real-time Price & Total Score
+        fresh_response = get_kr_signals()
         
-        signals_file = 'kr_market/data/signals_log.csv'
-        if not os.path.exists(signals_file):
-            return jsonify({'error': 'signals_log.csv not found'}), 404
-        
-        # 현재 시그널의 최신 날짜 확인
-        df = pd.read_csv(signals_file, encoding='utf-8-sig')
-        df['ticker'] = df['ticker'].astype(str).str.zfill(6)
-        
-        # 가장 최근 시그널 날짜
-        # 가장 최근 시그널 날짜
-        if 'status' in df.columns:
-            open_signals = df[df['status'] == 'OPEN']
+        # Handle Flask Response object
+        if hasattr(fresh_response, 'get_json'):
+            fresh_data = fresh_response.get_json()
+        elif hasattr(fresh_response, 'data'):
+            fresh_data = json.loads(fresh_response.data)
         else:
-            open_signals = df  # status 컬럼 없으면 전체 사용
+            fresh_data = {}
             
-        if open_signals.empty:
-            return jsonify({'error': 'No open signals'}), 404
+        fresh_signals = fresh_data.get('signals', [])
         
-        latest_signal_date = open_signals['signal_date'].max()
-        
-        # 강제 새로고침 여부 확인
-        force_refresh = request.args.get('refresh', 'false').lower() == 'true'
-        
-        # 저장된 분석 결과 확인 (refresh=true 시 캐시 무시)
+        # 2. Load Cached AI Text (to save API costs and latency)
+        cached_ai_texts = {}
+        cached_market_analysis = {}
         KR_AI_ANALYSIS_FILE = 'kr_market/data/kr_ai_analysis.json'
-        if not force_refresh and os.path.exists(KR_AI_ANALYSIS_FILE):
+        
+        if os.path.exists(KR_AI_ANALYSIS_FILE):
             try:
                 with open(KR_AI_ANALYSIS_FILE, 'r', encoding='utf-8') as f:
-                    cached_data = json.load(f)
-                
-                # 같은 날짜의 분석 결과가 있으면 반환
-                if cached_data.get('signal_date') == latest_signal_date:
-                    print(f"✅ Using cached AI analysis for {latest_signal_date}")
-                    return jsonify(cached_data)
-            except Exception as load_error:
-                print(f"Cache load error: {load_error}")
+                    cached_full = json.load(f)
+                    
+                    # Extract Market Analysis
+                    cached_market_analysis = cached_full.get('market_analysis', {})
+                    
+                    # Extract Stock Analysis (Index by Ticker)
+                    if 'signals' in cached_full:
+                        for s in cached_full['signals']:
+                            ticker = str(s.get('ticker')).zfill(6)
+                            cached_ai_texts[ticker] = {
+                                'gpt': s.get('gpt_recommendation'),
+                                'gemini': s.get('gemini_recommendation')
+                            }
+            except Exception as e:
+                print(f"Cache load error: {e}")
         
-        print(f"🔄 Generating new AI analysis for {latest_signal_date} (refresh={force_refresh})...")
-        
-        # 종목명/시장 로드
-        stock_names = {}
-        stock_markets = {}
-        stocks_file = 'kr_market/data/stock_list.csv'
-        if os.path.exists(stocks_file):
-            stocks_df = pd.read_csv(stocks_file, encoding='utf-8-sig', dtype={'ticker': str})
-            stocks_df['ticker'] = stocks_df['ticker'].astype(str).str.strip().str.zfill(6)
-            stock_names = dict(zip(stocks_df['ticker'], stocks_df['name']))
-            stock_markets = dict(zip(stocks_df['ticker'], stocks_df['market']))
-        
-        # VCP 필터링 및 Top 10 선정
-        today = datetime.now().strftime('%Y-%m-%d')
-        signals = []
-        
-        for _, row in open_signals.iterrows():
-            score = float(row['score']) if pd.notna(row['score']) else 0
-            contraction = float(row['contraction_ratio']) if pd.notna(row['contraction_ratio']) else 1
-            foreign_5d = int(row['foreign_5d']) if pd.notna(row['foreign_5d']) else 0
-            inst_5d = int(row['inst_5d']) if pd.notna(row['inst_5d']) else 0
-            signal_date = row['signal_date']
+        # 3. Merge AI Text into Fresh Signals
+        final_signals = []
+        for sig in fresh_signals:
+            ticker = str(sig.get('ticker')).zfill(6)
             
-            if contraction > 0.8 or (foreign_5d < 0 and inst_5d < 0) or score < 50:
-                continue
+            # Use cached text if available, otherwise default
+            ai_text = cached_ai_texts.get(ticker, {})
             
-            contraction_score = (1 - contraction) * 100
-            supply_score = min((foreign_5d + inst_5d) / 100000, 30)
-            today_bonus = 10 if signal_date == today else 0
-            final_score = (score * 0.4) + (contraction_score * 0.3) + (supply_score * 0.2 * 10) + today_bonus
-            
-            signals.append({
-                'ticker': row['ticker'],
-                'name': stock_names.get(row['ticker'], ''),
-                'market': stock_markets.get(row['ticker'], ''),
-                'score': round(score, 1),
-                'contraction_ratio': round(contraction, 2),
-                'foreign_5d': foreign_5d,
-                'inst_5d': inst_5d,
-                'entry_price': round(row['entry_price'], 0) if pd.notna(row['entry_price']) else 0,
-                'final_score': round(final_score, 1)
+            sig['gpt_recommendation'] = ai_text.get('gpt', {
+                'action': 'HOLD', 
+                'reason': '신규 진입 종목 (AI 분석 대기 중)', 
+                'confidence': 50
             })
-        
-        # ========== 테마 종목 자동 추가 ==========
-        existing_tickers = {s['ticker'] for s in signals}
-        theme_tickers = ThemeManager.get_all_target_tickers()
-        
-        # open_signals를 ticker로 인덱싱하여 빠른 조회
-        supply_data = {}
-        for _, row in open_signals.iterrows():
-            ticker = str(row['ticker']).zfill(6)
-            supply_data[ticker] = {
-                'foreign_5d': int(row['foreign_5d']) if pd.notna(row['foreign_5d']) else 0,
-                'inst_5d': int(row['inst_5d']) if pd.notna(row['inst_5d']) else 0,
-                'score': float(row['score']) if pd.notna(row['score']) else 0,
-                'contraction_ratio': float(row['contraction_ratio']) if pd.notna(row['contraction_ratio']) else 0.5,
-                'entry_price': float(row['entry_price']) if pd.notna(row['entry_price']) else 0
-            }
-        
-        for t_ticker in theme_tickers:
-            t_ticker = str(t_ticker).zfill(6)
-            if t_ticker in existing_tickers:
-                continue
-            
-            theme = ThemeManager.get_theme(t_ticker)
-            if not theme:
-                continue
-            
-            t_name = stock_names.get(t_ticker, t_ticker)
-            t_market = stock_markets.get(t_ticker, 'KOSPI')
-            
-            # 수급 데이터 조회 (open_signals에서 먼저 찾고, 없으면 pykrx로 조회)
-            sd = supply_data.get(t_ticker, None)
-            if sd:
-                foreign_5d = sd.get('foreign_5d', 0)
-                inst_5d = sd.get('inst_5d', 0)
-                vcp_score = sd.get('score', 0)
-                contraction = sd.get('contraction_ratio', 0.5)
-                entry_price = sd.get('entry_price', 0)
-            else:
-                # pykrx로 실시간 수급 데이터 조회
-                print(f"  📊 수급 조회 중: {t_ticker} ({t_name})")
-                supply = get_supply_data(t_ticker, days=5)
-                foreign_5d = supply.get('foreign_5d', 0)
-                inst_5d = supply.get('inst_5d', 0)
-                vcp_score = 0
-                contraction = 0.5
-                entry_price = 0
-            
-            # 현재가 조회 (실패해도 계속 진행)
-            try:
-                cp = get_real_stock_data(t_ticker)
-                current_price = cp.get('current_price', 0) if cp else 0
-            except:
-                current_price = 0
-            
-            # 현재가가 없으면 entry_price 또는 기본값 사용
-            if current_price <= 0:
-                current_price = entry_price if entry_price > 0 else 10000
-            
-            signals.append({
-                'ticker': t_ticker,
-                'name': t_name or t_ticker,
-                'market': t_market,
-                'score': vcp_score if vcp_score > 0 else 65,  # VCP 점수 있으면 사용
-                'contraction_ratio': contraction,
-                'foreign_5d': foreign_5d,
-                'inst_5d': inst_5d,
-                'entry_price': current_price,
-                'final_score': 55
+            sig['gemini_recommendation'] = ai_text.get('gemini', {
+                'action': 'HOLD', 
+                'reason': '신규 진입 종목 (AI 분석 대기 중)', 
+                'confidence': 50
             })
-        
-        # Top 10 (VCP 시그널 우선) + 테마 종목 (최대 25개)
-        vcp_signals = sorted([s for s in signals if s['final_score'] >= 60], key=lambda x: x['final_score'], reverse=True)[:10]
-        theme_signals = [s for s in signals if ThemeManager.get_theme(s['ticker']) and s['final_score'] < 60][:15]
-        top_signals = vcp_signals + theme_signals
-        
-        # AI 분석 수행
-        result = generate_ai_recommendations(top_signals)
-        
-        # 결과에 시그널 날짜 추가
-        result['signal_date'] = latest_signal_date
-        
-        # 파일에 저장 (최신 버전 + 히스토리 보관)
-        os.makedirs(os.path.dirname(KR_AI_ANALYSIS_FILE), exist_ok=True)
-        
-        # 1. 최신 분석 파일 (항상 덮어쓰기)
-        with open(KR_AI_ANALYSIS_FILE, 'w', encoding='utf-8') as f:
-            json.dump(result, f, ensure_ascii=False, indent=2)
-        
-        # 2. 히스토리 파일 (날짜별 보관)
-        history_dir = 'kr_market/data/history'
-        os.makedirs(history_dir, exist_ok=True)
-        history_file = f"{history_dir}/kr_ai_analysis_{latest_signal_date}.json"
-        with open(history_file, 'w', encoding='utf-8') as f:
-            json.dump(result, f, ensure_ascii=False, indent=2)
-        
-        print(f"✅ AI analysis saved to {KR_AI_ANALYSIS_FILE}")
+            
+            final_signals.append(sig)
+            
+        # 4. Construct Final Result
+        # Left screen expects 'signals' and 'market_analysis'
+        result = {
+            'signals': final_signals, # Already sorted by get_kr_signals (Total Score)
+            'market_analysis': cached_market_analysis,
+            'signal_date': datetime.now().strftime('%Y-%m-%d'), # Live date
+            'count': len(final_signals),
+            'note': 'Real-time data synced with Signals API'
+        }
         
         return jsonify(result)
-        
+
     except Exception as e:
-        print(f"KR AI Analysis error: {e}")
+        import traceback
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
