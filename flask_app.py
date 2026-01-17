@@ -30,7 +30,10 @@ app = Flask(__name__)
 # ==================== BACKGROUND PRICE SCHEDULER ====================
 
 # [NEW] 실시간 데이터 - FinanceDataReader
-import FinanceDataReader as fdr
+try:
+    import FinanceDataReader as fdr
+except ImportError:
+    fdr = None  # Not available on Render
 from datetime import timedelta
 
 # [NICE] Theme Manager for dynamic theme lookup
