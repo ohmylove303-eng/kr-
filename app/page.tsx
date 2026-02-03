@@ -1,7 +1,7 @@
 "use client";
 
 import { Container, SimpleGrid, Group, Stack, Badge, Text, Button, Loader, Center, SegmentedControl } from "@mantine/core";
-import { IconCpu, IconChartLine, IconTrendingUp, IconBolt, IconSearch, IconAlertTriangle } from "@tabler/icons-react";
+import { IconCpu, IconChartLine, IconTrendingUp, IconBolt, IconAlertTriangle, IconClock, IconCategory } from "@tabler/icons-react";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { PageTitle } from "@/components/ui/PageTitle";
 import { SignalTable } from "@/components/SignalTable";
@@ -10,6 +10,7 @@ import { SectorGrid } from "@/components/SectorGrid";
 import { StockChartModal } from "@/components/StockChartModal";
 import useSWR from "swr";
 import { fetchSignals, fetchMarketStatus, fetchAIAnalysis, Signal } from "@/lib/api";
+import Link from "next/link";
 import { useState, useMemo } from "react";
 
 export default function Home() {
@@ -66,7 +67,26 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black pb-20">
-      {/* Floating Header / Dock Island */}
+      {/* Floating Navigation Dock */}
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+        <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 shadow-2xl">
+          <Link href="/">
+            <Button variant="subtle" color="gray" size="xs" radius="xl" className="font-bold">
+              홈
+            </Button>
+          </Link>
+          <Link href="/closing">
+            <Button variant="light" color="violet" size="xs" radius="xl" leftSection={<IconClock size={14} />}>
+              종가베팅
+            </Button>
+          </Link>
+          <Link href="/themes">
+            <Button variant="light" color="teal" size="xs" radius="xl" leftSection={<IconCategory size={14} />}>
+              테마분석
+            </Button>
+          </Link>
+        </div>
+      </div>
 
       <Container size="xl" pt={120}>
         <PageTitle

@@ -1,17 +1,37 @@
 "use client";
 
-import { Container, Stack, Text, SimpleGrid, Badge, Skeleton } from "@mantine/core";
+import { Container, Stack, Text, SimpleGrid, Badge, Skeleton, Button } from "@mantine/core";
+import { IconHome, IconClock, IconCategory } from "@tabler/icons-react";
 import { PageTitle } from "@/components/ui/PageTitle";
 import { SectorGrid } from "@/components/SectorGrid";
 import useSWR from "swr";
 import { fetchHotThemes } from "@/lib/api";
+import Link from "next/link";
 
 export default function ThemesPage() {
     const { data: themeData, isLoading } = useSWR('/api/kr/themes', fetchHotThemes);
 
     return (
-        <main>
-            <Container size="xl" py={40}>
+        <main className="min-h-screen bg-black">
+            {/* Floating Navigation Dock */}
+            <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+                <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 shadow-2xl">
+                    <Link href="/">
+                        <Button variant="subtle" color="gray" size="xs" radius="xl" leftSection={<IconHome size={14} />}>
+                            홈
+                        </Button>
+                    </Link>
+                    <Link href="/closing">
+                        <Button variant="light" color="violet" size="xs" radius="xl" leftSection={<IconClock size={14} />}>
+                            종가베팅
+                        </Button>
+                    </Link>
+                    <Button variant="filled" color="teal" size="xs" radius="xl" leftSection={<IconCategory size={14} />}>
+                        테마분석
+                    </Button>
+                </div>
+            </div>
+            <Container size="xl" pt={120} pb={40}>
                 <PageTitle
                     title="Themes & Sectors"
                     subtitle="시장 흐름 및 부문별 성과"

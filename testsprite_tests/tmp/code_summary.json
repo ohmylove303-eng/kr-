@@ -1,0 +1,44 @@
+{
+    "tech_stack": [
+        "Next.js 14 (App Router)",
+        "TypeScript",
+        "Mantine UI v7",
+        "Framer Motion",
+        "Tailwind CSS",
+        "SWR"
+    ],
+    "features": [
+        {
+            "name": "Design System",
+            "description": "Apple-style Midnight theme configuration with Glassmorphism and custom typography.",
+            "files": [
+                "theme.ts",
+                "app/globals.css",
+                "app/layout.tsx"
+            ]
+        },
+        {
+            "name": "UI Components",
+            "description": "Reusable UI components like GlassCard for depth effects and animated PageTitle.",
+            "files": [
+                "components/ui/GlassCard.tsx",
+                "components/ui/PageTitle.tsx"
+            ]
+        },
+        {
+            "name": "Dashboard Page",
+            "description": "Main dashboard using Bento Grid layout to display market status, AI signals, and charts.",
+            "files": [
+                "app/page.tsx"
+            ]
+        },
+        {
+            "name": "Data Fetching",
+            "description": "API utility and proxy configuration to fetch stock signals from Flask backend.",
+            "files": [
+                "lib/api.ts",
+                "next.config.mjs"
+            ]
+        }
+    ]
+}
