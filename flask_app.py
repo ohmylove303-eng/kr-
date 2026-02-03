@@ -369,9 +369,18 @@ def dividend_page():
 
 @app.route('/api/kr/market-status')
 def kr_market_status():
-    """Check if KR market is open"""
+    """Check if KR market is open (KST timezone aware)"""
     try:
-        now = datetime.now()
+        # Use zoneinfo for proper KST handling (works on Render servers too)
+        try:
+            from zoneinfo import ZoneInfo
+            kst = ZoneInfo('Asia/Seoul')
+        except ImportError:
+            # Fallback for older Python
+            import pytz
+            kst = pytz.timezone('Asia/Seoul')
+        
+        now = datetime.now(kst)
         is_weekday = now.weekday() < 5
         is_trading_hours = 9 <= now.hour < 16
         is_open = is_weekday and is_trading_hours
@@ -379,7 +388,8 @@ def kr_market_status():
         return jsonify({
             'status': 'success',
             'is_open': is_open,
-            'message': '장 중' if is_open else '장 마감'
+            'message': '장 중' if is_open else '장 마감',
+            'server_time_kst': now.strftime('%H:%M')
         })
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500

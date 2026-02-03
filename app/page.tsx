@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, SimpleGrid, Group, Stack, Badge, Text, Button, Loader, Center } from "@mantine/core";
+import { Container, SimpleGrid, Group, Stack, Badge, Text, Button, Loader, Center, SegmentedControl } from "@mantine/core";
 import { IconCpu, IconChartLine, IconTrendingUp, IconBolt, IconSearch, IconAlertTriangle } from "@tabler/icons-react";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { PageTitle } from "@/components/ui/PageTitle";
@@ -10,11 +10,15 @@ import { SectorGrid } from "@/components/SectorGrid";
 import { StockChartModal } from "@/components/StockChartModal";
 import useSWR from "swr";
 import { fetchSignals, fetchMarketStatus, fetchAIAnalysis, Signal } from "@/lib/api";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 export default function Home() {
   const [selectedSignal, setSelectedSignal] = useState<Signal | null>(null);
   const [chartOpened, setChartOpened] = useState(false);
+  const [activeTheme, setActiveTheme] = useState<string>('ALL');
+
+  // Theme categories for filtering
+  const themes = ['ALL', '반도체', '방산', 'AI전력', '환율수혜', '바이오'];
 
   // Data Fetching
   const { data: signalData, error: signalError, isLoading: signalLoading } = useSWR('/api/kr/signals', fetchSignals, {
@@ -48,7 +52,14 @@ export default function Home() {
   const signals = signalData?.signals || [];
   // Sort by final_score if available, otherwise score
   const sortedSignals = [...signals].sort((a, b) => (b.final_score || b.score) - (a.final_score || a.score));
-  const topSignal = sortedSignals.length > 0 ? sortedSignals[0] : null;
+
+  // Filter by selected theme
+  const filteredSignals = useMemo(() => {
+    if (activeTheme === 'ALL') return sortedSignals;
+    return sortedSignals.filter(s => s.theme === activeTheme);
+  }, [sortedSignals, activeTheme]);
+
+  const topSignal = filteredSignals.length > 0 ? filteredSignals[0] : null;
 
   const isMarketOpen = marketData?.is_open ?? false;
   const marketStatusMsg = marketData?.message || "Check Status";
@@ -145,7 +156,20 @@ export default function Home() {
               <div className="p-6 border-b border-white/10">
                 <Group justify="space-between">
                   <Text size="lg" fw={700}>Real-time VCP Signals</Text>
-                  <Button variant="light" color="gray" size="xs" radius="xl">View All</Button>
+                  <Group gap="xs">
+                    {themes.map(t => (
+                      <Button
+                        key={t}
+                        variant={activeTheme === t ? 'filled' : 'subtle'}
+                        color={activeTheme === t ? 'blue' : 'gray'}
+                        size="xs"
+                        radius="xl"
+                        onClick={() => setActiveTheme(t)}
+                      >
+                        {t}
+                      </Button>
+                    ))}
+                  </Group>
                 </Group>
               </div>
               {/* Signal List */}
@@ -154,7 +178,7 @@ export default function Home() {
                   <Center py={50}><Loader color="white" /></Center>
                 ) : (
                   <SignalTable
-                    signals={sortedSignals.slice(0, 20)}
+                    signals={filteredSignals.slice(0, 20)}
                     onRowClick={handleSignalClick}
                   />
                 )}
